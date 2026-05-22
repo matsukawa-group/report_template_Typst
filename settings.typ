@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////
+///
+///                report_template_Typst
+///                    settings.typ
+///
+//////////////////////////////////////////////////////////////////
+
 // 単位に関する設定
 #import "@preview/unify:0.8.0": num, qty, numrange, qtyrange
 // 日本語のダミーテキスト
@@ -14,6 +21,9 @@
   )
 
   // ページ番号
+  // 本文上の見た目と PDF 内部のページラベルを揃えるため
+  // set page(numbering: "--- 1 ---")
+  // のようには設定しない．
   set page(numbering: "1")
   set page(
     footer: context align(center)[
