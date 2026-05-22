@@ -27,10 +27,11 @@
   // 本文のフォント
   set text(lang: "ja", font: ("New Computer Modern", "BIZ UDMincho"))
 
-  // 本文を両端揃え + 段落冒頭一字下げ
   set par(
-    justify: true,
-    first-line-indent: (amount: 1em, all: true),
+    justify: true,      // 両端揃え
+    leading: 0.65em,    // 行送り
+    spacing: 0.65em,    // 段落間の間隔
+    first-line-indent: (amount: 1em, all: true),    // 段落冒頭一字下げ
   )
 
   // ページ番号
