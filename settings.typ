@@ -5,10 +5,23 @@
 ///
 //////////////////////////////////////////////////////////////////
 
-// 単位に関する設定
-#import "@preview/unify:0.8.0": num, qty, numrange, qtyrange
 // 日本語のダミーテキスト
 #import "@preview/roremu:0.1.0": roremu
+// 数式を簡単に書くための設定
+#import "@preview/physica:0.9.5": *
+// 単位に関する設定
+#import "@preview/unify:0.8.0": num, qty, numrange, qtyrange
+// カラーボックス
+#import "@preview/showybox:2.0.4": showybox
+// 定理環境
+#import "@preview/theorion:0.3.2": *
+#import cosmos.clouds: *
+#show: show-theorion
+// 図の作成 CeTZ
+#import "@preview/cetz:0.5.2"
+#import "@preview/cetz-plot:0.1.3": plot, chart
+#import "@preview/fletcher:0.5.8" as fletcher: edge, node
+
 
 #let setup(doc) = {
   // 本文のフォント
