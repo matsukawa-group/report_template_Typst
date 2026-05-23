@@ -57,6 +57,7 @@
     #set text(font: "Segoe UI")
     #block(it)
   ]
+  // 見出しの前後のスペース
   show heading: set block(above: 1.5em, below: 1.5em)
 
   // リンク
@@ -75,16 +76,17 @@
   doc
 }
 
+// 著者情報と日付の表示
 #let author(
   authors: (),
-  abstract: [],
+  date: none,
   doc,
 ) = {
   place(
     top + center,
     float: true,
     scope: "parent",
-    clearance: 2em,
+    clearance: 3em,
     {
       title()
 
@@ -100,6 +102,10 @@
         ]),
       )
 
+      if date != none {
+        v(1em)
+        align(center)[#date]
+      }
     }
   )
 
