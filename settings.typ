@@ -45,21 +45,22 @@
     ]
   )
 
-  // 見出し番号
-  set heading(numbering: "1.")
-
-  // リンク
-  show link: set text(fill: blue)
-
   // タイトル
   show title: set text(font: "Segoe UI")
   show title: set align(center)
+
+  // 見出し番号
+  set heading(numbering: "1.")
 
   // 見出し
   show heading: it => [
     #set text(font: "Segoe UI")
     #block(it)
   ]
+  show heading: set block(above: 1.5em, below: 1.5em)
+
+  // リンク
+  show link: set text(fill: blue)
 
   // 強調
   show strong: set text(
