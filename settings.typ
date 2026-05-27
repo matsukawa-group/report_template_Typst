@@ -10,7 +10,7 @@
 // 数式を簡単に書くための設定
 #import "@preview/physica:0.9.5": *
 // 単位に関する設定
-#import "@preview/unify:0.8.0": num, qty, numrange, qtyrange
+#import "@preview/unify:0.8.0": num, numrange, qty, qtyrange
 // カラーボックス
 #import "@preview/showybox:2.0.4": showybox
 // 定理環境
@@ -19,7 +19,7 @@
 #show: show-theorion
 // 図の作成 CeTZ
 #import "@preview/cetz:0.5.2"
-#import "@preview/cetz-plot:0.1.3": plot, chart
+#import "@preview/cetz-plot:0.1.3": chart, plot
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
 #import "@preview/codly:1.3.0": *
@@ -30,10 +30,10 @@
   set text(lang: "ja", font: ("New Computer Modern", "BIZ UDMincho"))
 
   set par(
-    justify: true,      // 両端揃え
-    leading: 0.65em,    // 行送り
-    spacing: 0.65em,    // 段落間の間隔
-    first-line-indent: (amount: 1em, all: true),    // 段落冒頭一字下げ
+    justify: true, // 両端揃え
+    leading: 0.65em, // 行送り
+    spacing: 0.65em, // 段落間の間隔
+    first-line-indent: (amount: 1em, all: true), // 段落冒頭一字下げ
   )
 
   // ページ番号
@@ -44,7 +44,7 @@
   set page(
     footer: context align(center)[
       --- #counter(page).display() ---
-    ]
+    ],
   )
 
   // タイトル
@@ -61,6 +61,21 @@
   ]
   // 見出しの前後のスペース
   show heading: set block(above: 1.5em, below: 1.5em)
+
+  // 番号なしの箇条書きの設定
+  set list(
+    indent: 1em
+  )
+  show list: set block(
+    spacing: 1em,
+  )
+  // 番号付きの箇条書きの設定
+  set enum(
+    indent: 1em
+  )
+  show enum: set block(
+    spacing: 1em,
+  )
 
   // リンク
   show link: set text(fill: blue)
@@ -110,7 +125,7 @@
         v(1em)
         align(center)[#date]
       }
-    }
+    },
   )
 
   doc
