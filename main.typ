@@ -131,6 +131,35 @@
 
 == 数式
 
+=== 基本的な数式の記法
+
+Typst で文章中に数式を組み込む（インライン数式）場合は `$$` で数式を囲って `$E = m c^2$` とすると $E = m c^2$ のように出力できます．このとき，`$E = mc^2$` のように `m` と `c` の間にスペースを入れず `mc` とすると，`mc` という一つのコマンドとして認識されてしまうため，注意しましょう．
+
+最も基本的な別行立ての数式は
+
+$
+  (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta))
+$<eq:NSr>
+
+```Typst
+$
+  (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta))
+$
+```
+または
+```Typst
+$ (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta)) $
+```
+
+のように `$` と数式の間に空白を設けることで出力できます．
+式 @eq:NSr の数式は Typst でサポートされている最も標準的なコマンドで記述しています．
+上付き添え字はキャレット `^`，下付き添え字はアンダースコア `_` を用いて表現します．
+したがって，$u_theta^2$ は `u_theta^2` と書きます．
+ここで注意点として，添え字が $u_theta^2$ のように一文字であれば問題ないのですが，$R_(i j)$ のように二文字以上の場合は `R_(i j)` のように括弧 `()` で囲んでください．
+分数はスラッシュ `/` を用いて表現します．
+
+ここは本当の改段落．
+
 = 図表の配置
 
 == 図の配置
