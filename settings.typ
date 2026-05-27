@@ -22,6 +22,8 @@
 #import "@preview/cetz-plot:0.1.3": plot, chart
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
+#import "@preview/codly:1.3.0": *
+#import "@preview/codly-languages:0.1.1": *
 
 #let setup(doc) = {
   // 本文のフォント
@@ -72,6 +74,8 @@
   // 引用文
   set quote(block: true)
   show quote: set pad(x: 5em)
+
+  show: codly-init.with()
 
   doc
 }
