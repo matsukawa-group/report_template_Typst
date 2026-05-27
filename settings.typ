@@ -64,18 +64,40 @@
 
   // 番号なしの箇条書きの設定
   set list(
-    indent: 1em
+    indent: 1em,
   )
   show list: set block(
     spacing: 1em,
   )
   // 番号付きの箇条書きの設定
   set enum(
-    indent: 1em
+    indent: 1em,
   )
   show enum: set block(
     spacing: 1em,
   )
+
+  // 数式に関する設定
+  set math.equation(
+    numbering: "(1)",
+    supplement: none,
+  )
+  show math.equation: set block(
+    spacing: 1em,
+  )
+
+  // 参照に関する設定
+  show ref: it => {
+    let eq = math.equation
+    let el = it.element
+    // Skip all other references.
+    if el == none or el.func() != eq { return it }
+    // Override equation references.
+    link(el.location(), numbering(
+      el.numbering,
+      ..counter(eq).at(el.location()),
+    ))
+  }
 
   // リンク
   show link: set text(fill: blue)
