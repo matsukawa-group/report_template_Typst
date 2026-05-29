@@ -57,13 +57,16 @@
   show title: set align(center)
 
   // 見出し番号
-  set heading(numbering: "1.")
+  set heading(
+    numbering: "1.",
+    supplement: none,
+  )
 
   // 見出し
   show heading: it => {
     set text(font: "Segoe UI")
     it
-    par(text(size: 0pt, ""))  // 見出しの後に字下げするために空の段落を設定
+    par(text(size: 0pt, "")) // 見出しの後に字下げするために空の段落を設定
     v(-1em)
   }
   // 見出しの前後のスペース
@@ -112,6 +115,7 @@
 
   // リンク
   show link: set text(fill: blue)
+  show ref: set text(fill: blue)
 
   // 強調
   show strong: set text(
