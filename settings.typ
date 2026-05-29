@@ -33,7 +33,7 @@
     justify: true, // 両端揃え
     leading: 0.65em, // 行送り
     spacing: 0.65em, // 段落間の間隔
-    first-line-indent: (amount: 1em, all: true), // 段落冒頭一字下げ
+    first-line-indent: (amount: 1em, all: false),
   )
 
   // ページ番号
@@ -55,10 +55,12 @@
   set heading(numbering: "1.")
 
   // 見出し
-  show heading: it => [
-    #set text(font: "Segoe UI")
-    #block(it)
-  ]
+  show heading: it => {
+    set text(font: "Segoe UI")
+    it
+    par(text(size: 0pt, ""))  // 見出しの後に字下げするために空の段落を設定
+    v(-1em)
+  }
   // 見出しの前後のスペース
   show heading: set block(above: 1.5em, below: 1.5em)
 
