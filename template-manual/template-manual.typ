@@ -226,19 +226,61 @@ $s i n x$ などと書くことのないよう気をつけましょう．
 式 @eq:NSr の左辺第二項では直立ボールド体の $vr(u)$ を採用していますが，これを簡単に出すコマンドは無いため，このテンプレートで自作したコマンドを使用し `vr(u)` とすることで出力できます．
 他のテンプレートでは `vr(u)` と書いても出力できないので注意してください．
 
+=== `physica` パッケージの数式コマンド
+
+#link("https://typst.app/universe/package/physica/")[`physica`] パッケージでサポートされている数式コマンドの一部を以下に示します．
+
+#align(center)[
+  #set table(
+    stroke: (x, y) => (
+      if y == 0 {
+        (top: black)
+        (bottom: black)
+      }
+        + if x == 0 {
+          (right: black)
+        }
+    ),
+    align: (x, y) => center,
+    fill: (x, y) => {
+      if y == 0 {
+        none
+      } else if calc.odd(y) {
+        rgb("F7FBFD")
+      } else {
+        rgb("E6F2F7")
+      }
+    },
+  )
+  #table(
+    columns: (90mm, 70mm),
+    inset: 6pt,
+    table.header([コマンド], [出力]),
+    [`va(u)`, `vb(u)`, `vu(u)`], $va(u), vb(u), vu(u)$,
+    [`dd(x)`, `dd(x, y)`, `dd(x, 2)`, `dd(x, [n])`], $dd(x), dd(x, y), dd(x, 2), dd(x, [n])$,
+    [`dv(, x)`, `dv(f, x)`, `dv(f, x, n)`], $display(dv(, x)"," dv(f, x)"," dv(f, x, n))$,
+    [`pdv(, x)`, `pdv(f, x)`, `pdv(f, x, y)`, `pdv(f, x, [n])`],
+    $display(pdv(, x)"," pdv(f, x)"," pdv(f, x, y)"," pdv(f, x, [n]))$,
+    [`dv(, x, d: upright(D))`, `dv(f, x, d: upright(D))`, `dv(f, x, n, d: upright(D))`],
+    $display(dv(, x, d: upright(D))"," dv(f, x, d: upright(D))"," dv(f, x, n, d: upright(D)))$,
+    table.hline(),
+  )
+]
+
+
 === 複数行に亘る数式の書き方
 
 複数の数式を並べる場合は
 $
-  a^2 &= b^2 + c^2 - 2 b c cos A #<eq:cosA>\
-  b^2 &= a^2 + c^2 - 2 c a cos B #<eq:cosB>\
-  c^2 &= a^2 + b^2 - 2 a b cos C #<eq:cosC>
+  a^2 & = b^2 + c^2 - 2 b c cos A #<eq:cosA> \
+  b^2 & = a^2 + c^2 - 2 c a cos B #<eq:cosB> \
+  c^2 & = a^2 + b^2 - 2 a b cos C #<eq:cosC>
 $
 ```Typst
 $
-  a^2 &= b^2 + c^2 - 2 b c cos A #<eq:cosA>\
-  b^2 &= a^2 + c^2 - 2 c a cos B #<eq:cosB>\
-  c^2 &= a^2 + b^2 - 2 a b cos C #<eq:cosC>
+  a^2 & = b^2 + c^2 - 2 b c cos A #<eq:cosA>\
+  b^2 & = a^2 + c^2 - 2 c a cos B #<eq:cosB>\
+  c^2 & = a^2 + b^2 - 2 a b cos C #<eq:cosC>
 $
 ```
 のように `&` の位置で数式を揃えることができます．
@@ -246,15 +288,15 @@ $
 数式を改行するときは行末にバックスラッシュ `\` を入れます．
 また，このやり方を応用すれば
 $
-  sin 2 alpha &= sin (alpha + alpha) #<equate:revoke> \
-  &= sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
-  &= 2 sin alpha cos alpha #<eq:double-angle>
+  sin 2 alpha & = sin (alpha + alpha) #<equate:revoke> \
+              & = sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
+              & = 2 sin alpha cos alpha #<eq:double-angle>
 $
 ```Typst
 $
-  sin 2 alpha &= sin (alpha + alpha) #<equate:revoke> \
-  &= sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
-  &= 2 sin alpha cos alpha #<eq:double-angle>
+  sin 2 alpha & = sin (alpha + alpha) #<equate:revoke> \
+              & = sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
+              & = 2 sin alpha cos alpha #<eq:double-angle>
 $
 ```
 のように途中式も入れられます．
