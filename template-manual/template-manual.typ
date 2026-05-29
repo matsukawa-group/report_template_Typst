@@ -131,37 +131,77 @@
 
 == 数式
 
-=== 基本的な数式の記法
+=== 基本的な数式の書き方
 
 Typst で文章中に数式を組み込む（インライン数式）場合は `$$` で数式を囲って `$E = m c^2$` とすると $E = m c^2$ のように出力できます．このとき，`$E = mc^2$` のように `m` と `c` の間にスペースを入れず `mc` とすると，`mc` という一つのコマンドとして認識されてしまうため，注意しましょう．
 
 最も基本的な別行立ての数式は
 
 $
-  (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta))
-$<eq:NSr>
+  pdv(u_r, t) + (vr(u) dot nabla) u_r = - 1/rho pdv(p, r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 pdv(u_theta, theta)) #<eq:NSr>
+$
 
 ```Typst
 $
-  (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta))
+  pdv(u_r, t) + (vr(u) dot nabla) u_r = - 1/rho pdv(p, r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 pdv(u_theta, theta)) #<eq:NSr>
 $
 ```
 または
 ```Typst
-$ (partial u_r)/(partial t) + (bold("u") dot nabla) u_r = - 1/rho (partial p)/(partial r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 (partial u_theta)/(partial theta)) $
+$ pdv(u_r, t) + (vr(u) dot nabla) u_r = - 1/rho pdv(p, r) + nu (nabla^2 u_r - u_r/r^2 - 2/r^2 pdv(u_theta, theta)) #<eq:NSr> $
 ```
 
 のように `$` と数式の間に空白を設けることで出力できます．
-式 @eq:NSr の数式は Typst でサポートされている最も標準的なコマンドで記述しています．
+式 @eq:NSr の数式は Typst でサポートされている最も標準的なコマンドと #link("https://typst.app/universe/package/physica/")[`physica`] パッケージで記述しています．
 上付き添え字はキャレット `^`，下付き添え字はアンダースコア `_` を用いて表現します．
 したがって，$u_theta^2$ は `u_theta^2` と書きます．
 ここで注意点として，添え字が $u_theta^2$ のように一文字であれば問題ないのですが，$R_(i j)$ のように二文字以上の場合は `R_(i j)` のように括弧 `()` で囲んでください．
-分数はスラッシュ `/` を用いて表現します．
 $rho$ や $theta$ のようなギリシャ文字も出力できるほか，$nabla$ や $sin$，$log$ のような数学で使う関数の類もコマンドが存在します（例：`nabla`，`sin`，`log`）．
-$sin$ や $log$ は通常アップライト体（立体，Roman 体）で書きます．
+$sin$ や $log$ は通常アップライト体（直立体，Roman 体）で書きます．
 $s i n x$ などと書くことのないよう気をつけましょう．
-左辺第二項では速度 $bold("u")$ がベクトルであるため，Bold 体になっています．これは `bold("u")` とすることで出力できます．
-ベクトルをボールドイタリック体 $bold(u)$ にしたい場合は `bold(u)` としてください．
+分数はスラッシュ `/` を用いて `1/rho` と表現します．
+ただし，インライン数式の $1 slash rho$ のようにスラッシュで分数表記したいときは `1 slash rho` としてください．
+ベクトルの表記としては矢印を用いて $va(u)$ と表記する方法，イタリックボールド体で $vb(u)$ と表記する方法などがあります．
+これらは `physica` パッケージでサポートされているコマンドを使用し，それぞれ `va(u)`，`vb(u)` とすることで出力できます．
+式 @eq:NSr の左辺第二項では直立ボールド体の $vr(u)$ を採用していますが，これを簡単に出すコマンドは無いため，このテンプレートで自作したコマンドを使用し `vr(u)` とすることで出力できます．
+他のテンプレートでは `vr(u)` と書いても出力できないので注意してください．
+
+=== 複数行に亘る数式の書き方
+
+複数の数式を並べる場合は
+$
+  a^2 &= b^2 + c^2 - 2 b c cos A #<eq:cosA>\
+  b^2 &= a^2 + c^2 - 2 c a cos B #<eq:cosB>\
+  c^2 &= a^2 + b^2 - 2 a b cos C #<eq:cosC>
+$
+```Typst
+$
+  a^2 &= b^2 + c^2 - 2 b c cos A #<eq:cosA>\
+  b^2 &= a^2 + c^2 - 2 c a cos B #<eq:cosB>\
+  c^2 &= a^2 + b^2 - 2 a b cos C #<eq:cosC>
+$
+```
+のように `&` の位置で数式を揃えることができます．
+式 @eq:cosA–@eq:cosC は $=$ の前に `&` を置いているため，$=$ の位置で数式が揃っています．
+数式を改行するときは行末にバックスラッシュ `\` を入れます．
+また，このやり方を応用すれば
+$
+  sin 2 alpha &= sin (alpha + alpha) #<equate:revoke> \
+  &= sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
+  &= 2 sin alpha cos alpha #<eq:double-angle>
+$
+```Typst
+$
+  sin 2 alpha &= sin (alpha + alpha) #<equate:revoke> \
+  &= sin alpha cos alpha + cos alpha sin alpha #<equate:revoke> \
+  &= 2 sin alpha cos alpha #<eq:double-angle>
+$
+```
+のように途中式も入れられます．
+式番号を振らなくていい行は `#<equate:revoke>` コマンドを使用しています．
+
+
+=== 単位の書き方
 
 = 図表の配置
 
