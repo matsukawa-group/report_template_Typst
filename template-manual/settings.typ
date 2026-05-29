@@ -9,6 +9,7 @@
 #import "@preview/roremu:0.1.0": roremu
 // 数式を簡単に書くための設定
 #import "@preview/physica:0.9.5": *
+#let vr(v) = math.bold(math.upright(v)) // ベクトルを直立ボールドで表すコマンドを追加で作成
 // 単位に関する設定
 #import "@preview/unify:0.8.0": num, numrange, qty, qtyrange
 // カラーボックス
@@ -83,9 +84,13 @@
     spacing: 1em,
   )
 
+  // 複数行に亘る数式に関する設定
+  import "@preview/equate:0.3.3": equate
+  show: equate.with(breakable: true, sub-numbering: false)
+
   // 数式に関する設定
   set math.equation(
-    numbering: "(1)",
+    numbering: (..n) => numbering("(1)", ..n),
     supplement: none,
   )
   show math.equation: set block(
@@ -93,17 +98,17 @@
   )
 
   // 参照に関する設定
-  show ref: it => {
-    let eq = math.equation
-    let el = it.element
-    // Skip all other references.
-    if el == none or el.func() != eq { return it }
-    // Override equation references.
-    link(el.location(), numbering(
-      el.numbering,
-      ..counter(eq).at(el.location()),
-    ))
-  }
+  // show ref: it => {
+  //   let eq = math.equation
+  //   let el = it.element
+  //   // Skip all other references.
+  //   if el == none or el.func() != eq { return it }
+  //   // Override equation references.
+  //   link(el.location(), numbering(
+  //     el.numbering,
+  //     ..counter(eq).at(el.location()),
+  //   ))
+  // }
 
   // リンク
   show link: set text(fill: blue)
