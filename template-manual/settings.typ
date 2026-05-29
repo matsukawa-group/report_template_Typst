@@ -5,8 +5,6 @@
 ///
 //////////////////////////////////////////////////////////////////
 
-// CJK 文字を組むときのスペース
-#import "@preview/cjk-spacer:0.2.1"
 // 日本語のダミーテキスト
 #import "@preview/roremu:0.1.0": roremu
 // 数式を簡単に書くための設定
@@ -28,6 +26,10 @@
 #import "@preview/codly-languages:0.1.1": *
 
 #let setup(doc) = {
+  // CJK 文字を組むときのスペース
+  import "@preview/cjk-spacer:0.2.1": cjk-spacer
+  show: cjk-spacer
+
   // 本文のフォント
   set text(lang: "ja", font: ("New Computer Modern", "BIZ UDMincho"))
 
