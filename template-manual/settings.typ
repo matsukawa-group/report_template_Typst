@@ -10,8 +10,6 @@
 // 数式を簡単に書くための設定
 #import "@preview/physica:0.9.5": *
 #let vr(v) = math.bold(math.upright(v)) // ベクトルを直立ボールドで表すコマンドを追加で作成
-// 単位に関する設定
-#import "@preview/unify:0.8.0": num, numrange, qty, qtyrange
 // カラーボックス
 #import "@preview/showybox:2.0.4": showybox
 // 定理環境
@@ -25,6 +23,9 @@
 
 #import "@preview/codly:1.3.0": *
 #import "@preview/codly-languages:0.1.1": *
+
+// 単位に関する設定
+#import "@preview/fancy-units:0.1.1": *
 
 #let setup(doc) = {
   // CJK 文字を組むときのスペース
@@ -116,6 +117,7 @@
   // リンク
   show link: set text(fill: blue)
   show ref: set text(fill: blue)
+  show footnote: set text(fill: blue)
 
   // 強調
   show strong: set text(
@@ -128,6 +130,18 @@
   show quote: set pad(x: 5em)
 
   show: codly-init.with()
+
+  // 単位に関する設定
+  fancy-units-configure(
+    per-mode: "slash",
+    unit-separator: sym.dot,
+  )
+  // 単位のマクロを追加
+  add-macros(
+    u: sym.mu,
+    celsius: [$degree:C$],
+    fahrenheit: [$degree:F$]
+  )
 
   doc
 }
