@@ -366,4 +366,58 @@ $
 == 表の配置
 <ssec:table>
 
+= 定理環境・かっこいい枠
+<sec:theorem>
+
+== 定理環境
+<ssec:theorem>
+
+== かっこいい枠
+<ssec:frame>
+
+定理環境としても使えるかっこいい枠を #link("https://typst.app/universe/package/showybox/")[`showybox`] パッケージで作成できます．
+このレポートテンプレートでは枠の色に青・赤・緑・グレーの 4 色を用意しました．
+
+#showybox(
+  frame: bluebox,
+  title: [青のカラーボックス],
+  footer: [フッター部分]
+)[
+  これは青のカラーボックスの内容です．
+][
+  これも青のカラーボックスの内容です．
+]
+
+#showybox(
+  frame: redbox,
+  title: [赤のカラーボックス],
+  footer: [フッター部分]
+)[
+  これは赤のカラーボックスの内容です．
+][
+  これも赤のカラーボックスの内容です．
+]
+
+#showybox(
+  frame: greenbox,
+  title: [緑のカラーボックス],
+  footer: [フッター部分]
+)[
+  これは緑のカラーボックスの内容です．
+][
+  これも緑のカラーボックスの内容です．
+]
+
+#showybox(
+  frame: graybox,
+  title: [グレーのカラーボックス],
+  footer: [フッター部分]
+)[
+  これはグレーのカラーボックスの内容です．
+][
+  これもグレーのカラーボックスの内容です．
+]
+
+
+
 
