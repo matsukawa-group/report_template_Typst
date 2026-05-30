@@ -10,6 +10,13 @@
 
 #show: setup
 
+// 定理環境の設定
+// #import cosmos.simple: *
+// #import cosmos.fancy: *
+#import cosmos.rainbow: *
+// #import cosmos.clouds: *
+#show: show-theorion
+
 #set document(title: [
   ここに文書のタイトルを入れます
 ])
@@ -371,6 +378,57 @@ $
 
 == 定理環境
 <ssec:theorem>
+
+数学や物理の定理や法則を示すための定理環境を #link("https://typst.app/universe/package/theorion/")[`theorion`] パッケージで用意しています．
+このレポートテンプレート冒頭で
+```Typst
+// 定理環境の設定
+// #import cosmos.simple: *
+// #import cosmos.fancy: *
+#import cosmos.rainbow: *
+// #import cosmos.clouds: *
+#show: show-theorion
+```
+のように，ここでは `cosmos.rainbow` を適用していますが，自分の好みの定理環境を選んで使用してください．
+
+#theorem[Bernoulli's Theorem][
+  $
+    1/2 rho v^2 + rho g z + p = "const."
+  $
+]
+
+また，`theorion` パッケージでは通常の定理環境以外にも，定義（definition）や補題（lemma）などの環境も用意されているので，必要に応じて使用してください．
+その他，#link("https://github.blog/changelog/2023-12-14-new-markdown-extension-alerts-provide-distinctive-styling-for-significant-content/")[GitHub で利用できる Markdown 記法のアラートのようなもの] も `theorion` パッケージで用意されています．
+
+#note-block[
+  ユーザーがコンテンツをざっと目を通すだけでも知っておくべき有用な情報．
+]
+
+#caution-block[
+  特定の行動に伴うリスクや悪影響について注意を促す．
+]
+
+#important-block[
+  ユーザーが目標を達成するために知っておくべき重要な情報．
+]
+
+#warning-block[
+  問題を回避するために，ユーザーが直ちに対応すべき緊急の情報．
+]
+
+#remark-block[
+  補足事項や背景情報，例外事項などを示す．
+]
+
+#tip-block[
+  物事をより良く，あるいはより簡単に行うための役立つアドバイス．
+]
+
+引用文を表示するためのブロックも `theorion` パッケージで用意されています．
+
+#quote-block[
+  引用文を表示するためのブロック．
+]
 
 == かっこいい枠
 <ssec:frame>
