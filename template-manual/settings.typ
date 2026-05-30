@@ -10,10 +10,8 @@
 // 数式を簡単に書くための設定
 #import "@preview/physica:0.9.5": *
 #let vr(v) = math.bold(math.upright(v)) // ベクトルを直立ボールドで表すコマンドを追加で作成
-// 定理環境
-#import "@preview/theorion:0.3.2": *
-#import cosmos.clouds: *
-#show: show-theorion
+// 定理環境の設定
+#import "@preview/theorion:0.6.0": *
 // 図の作成 CeTZ
 #import "@preview/cetz:0.5.2"
 #import "@preview/cetz-plot:0.1.3": chart, plot
@@ -31,7 +29,7 @@
   show: cjk-spacer
 
   // 本文のフォント
-  set text(lang: "ja", font: ("New Computer Modern", "BIZ UDMincho"))
+  set text(lang: "en", font: ("New Computer Modern", "BIZ UDMincho"))
 
   set par(
     justify: true, // 両端揃え
