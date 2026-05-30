@@ -10,6 +10,15 @@
 
 #show: setup
 
+// 複数の図を並べるための設定
+#import "@preview/hallon:0.1.3" as hallon: subfigure
+#import "@preview/smartaref:0.1.0": cref, Cref
+#show: hallon.style-figures
+#show figure.where(kind: image): set figure(supplement: "Figure")
+#show figure.where(kind: image): set figure.caption(separator: h(1em))
+#show figure.where(kind: "subfigure"): set figure(supplement: none, numbering: "a")
+
+
 // 定理環境の設定
 // #import cosmos.simple: *
 // #import cosmos.fancy: *
@@ -370,6 +379,157 @@ $
 == 図の配置
 <ssec:figure>
 
+=== 一枚の図を配置する方法
+<sssec:figure-single>
+
+ここでは図を1枚だけ配置する方法を紹介します．
+
+#figure(
+  placement: top,
+  image("figure/example-image.pdf", width: 60%),
+  caption: [Please write the figure caption here.],
+)<fig:one_figure>
+
+```Typst
+#figure(
+  placement: top,
+  image("figure/example-image.pdf", width: 60%),
+  caption: [Please write the figure caption here.],
+)<fig:one_figure>
+
+図 @fig:one_figure のように図を……
+```
+
+図 @fig:one_figure のように図を配置するときは `#figure()` コマンドで図を自動配置し，`#image()` コマンドで画像を挿入します．
+図を配置する位置は次のように `placement` オプションで指定します．
+
+- `top`：ページの上部に配置
+- `bottom`：ページの下部に配置
+- `auto`：`top` と `bottom` のどちらか近い方に配置
+- `none`：その位置に配置
+
+論文等の図は基本的にページ上部に配置するので，このテンプレートでは `top` を指定しています．
+ただし，最初のページに図を配置したいときは氏名やタイトルよりも上に図があるのは不自然なので，その場合は `bottom` を指定してページ下部に配置するのがいいでしょう．
+図の大きさは `#image()` コマンドの `width` オプションで指定できます．
+`width: 60%` とすれば，ページ幅の60%の大きさで図を配置できます．
+`width: 60mm` のように絶対的な長さで指定することもできます．
+
+また，図も数式と同様に相互参照が可能です．
+図を参照したいときは `@fig:one_figure` のように `@` とラベルを組み合わせて参照します．
+ハイパーリンクも埋め込まれているので，該当する図が遠く離れた位置にあってもクリックすればすぐに飛べるようになっています．
+
+=== 複数枚の図を配置する方法
+<sssec:figure-multiple>
+
+関連する図（ここではそれぞれの図を「サブ図」と呼称します）を複数枚配置するときは `grid` と `subfigure` を使いましょう．
+`subfigure` は #link("https://typst.app/universe/package/hallon")[`hallon`] パッケージのコマンドです．
+`grid` コマンドでは列数や列間のスペースを指定できます．
+`columns: 2` とすれば 2 列のグリッドを作ることができます．
+また，`gutter: 2.5mm` とすれば列間のスペースを $#qty[2.5][mm]$ に設定できます．
+図 @fig:two_figures は関連する図を左右に二枚配置した例です．
+図 @fig:three_figures は関連する図を左右に三枚配置した例で，図 @fig:four_figures は関連する図を $2 times 2$ のグリッドで配置した例です．
+
+#figure(
+  placement: top,
+	grid(
+		columns: 2,
+		gutter: 2.5mm,
+		subfigure(
+			image("figure/example-image-a.pdf", width: 100%),
+			caption: [Left figure caption.],
+			label: <subfig:two_figures-a>,
+		),
+		subfigure(
+			image("figure/example-image-b.pdf", width: 100%),
+			caption: [Right figure caption.],
+			label: <subfig:two_figures-b>,
+		),
+	),
+	caption: [Two figures placed side by side.],
+) <fig:two_figures>
+```Typst
+#figure(
+  placement: top,
+	grid(
+		columns: 2,
+		gutter: 2.5mm,
+		subfigure(
+			image("figure/example-image-a.pdf", width: 100%),
+			caption: [Left figure caption.],
+			label: <subfig:two_figures-a>,
+		),
+		subfigure(
+			image("figure/example-image-b.pdf", width: 100%),
+			caption: [Right figure caption.],
+			label: <subfig:two_figures-b>,
+		),
+	),
+	caption: [Two figures placed side by side.],
+) <fig:two_figures>
+```
+
+#figure(
+  placement: top,
+	grid(
+		columns: 3,
+		gutter: 2.5mm,
+		subfigure(
+			image("figure/example-image-a.pdf", width: 100%),
+			caption: [Left figure caption.],
+			label: <subfig:three_figures-a>,
+		),
+		subfigure(
+			image("figure/example-image-b.pdf", width: 100%),
+			caption: [Center figure caption.],
+			label: <subfig:three_figures-b>,
+		),
+		subfigure(
+			image("figure/example-image-c.pdf", width: 100%),
+			caption: [Right figure caption.],
+			label: <subfig:three_figures-c>,
+		),
+	),
+	caption: [Three figures placed side by side.],
+) <fig:three_figures>
+
+
+#figure(
+  placement: top,
+	grid(
+		columns: 2,
+		gutter: 3.5mm,
+		subfigure(
+			image("figure/example-image-a.pdf", width: 100%),
+			caption: [Upper-left figure caption.],
+			label: <subfig:four_figures-a>,
+		),
+		subfigure(
+			image("figure/example-image-b.pdf", width: 100%),
+			caption: [Upper-right figure caption.],
+			label: <subfig:four_figures-b>,
+		),
+		subfigure(
+			image("figure/example-image-c.pdf", width: 100%),
+			caption: [Lower-left figure caption.],
+			label: <subfig:four_figures-c>,
+		),
+		subfigure(
+			image("figure/example-image.pdf", width: 100%),
+			caption: [Lower-right figure caption.],
+			label: <subfig:four_figures-d>,
+		),
+	),
+	caption: [Four figures placed in a $2 times 2$ grid.],
+) <fig:four_figures>
+
+
+`ref`: See @fig:two_figures, @subfig:two_figures-a and @subfig:two_figures-b.
+
+`cref`: See #cref[@fig:two_figures @subfig:two_figures-a @subfig:two_figures-b].
+
+`Cref`: #Cref[@fig:two_figures @subfig:two_figures-a @subfig:two_figures-b] are ...
+
+
 == 表の配置
 <ssec:table>
 
@@ -439,7 +599,7 @@ $
 #showybox(
   frame: bluebox,
   title: [青のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは青のカラーボックスの内容です．
 ][
@@ -449,7 +609,7 @@ $
 #showybox(
   frame: redbox,
   title: [赤のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは赤のカラーボックスの内容です．
 ][
@@ -459,7 +619,7 @@ $
 #showybox(
   frame: greenbox,
   title: [緑のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは緑のカラーボックスの内容です．
 ][
@@ -469,7 +629,7 @@ $
 #showybox(
   frame: graybox,
   title: [グレーのカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これはグレーのカラーボックスの内容です．
 ][
