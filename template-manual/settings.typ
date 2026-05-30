@@ -136,8 +136,21 @@
   add-macros(
     u: sym.mu,
     celsius: [$degree:C$],
-    fahrenheit: [$degree:F$]
+    fahrenheit: [$degree:F$],
   )
+
+  // 図とキャプションの間のスペースを設定
+  set figure(gap: 1em)
+  // 参照時に図番号だけ表示
+  show ref: it => {
+    let el = it.element
+
+    if el != none and el.func() == figure {
+      numbering(el.numbering, ..el.counter.at(el.location()))
+    } else {
+      it
+    }
+  }
 
   doc
 }
