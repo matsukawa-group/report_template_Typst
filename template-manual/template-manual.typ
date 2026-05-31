@@ -307,6 +307,22 @@ $
 のように途中式も入れられます．
 式番号を振らなくていい行は `#<equate:revoke>` コマンドを使用しています．
 
+場合分けのある数式は `cases` が便利です．式 @eq:kronecker-delta は Kronecker のデルタです．
+$
+  delta_(i j) = cases(
+    1"," quad i = j,
+    0"," quad i != j
+  )#<eq:kronecker-delta>
+$
+```Typst
+$
+  delta_(i j) = cases(
+    1"," quad i = j,
+    0"," quad i != j
+  )#<eq:kronecker-delta>
+$
+```
+
 === 単位の書き方
 <sssec:math-unit>
 
