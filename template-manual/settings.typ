@@ -100,6 +100,7 @@
   show math.equation: set block(
     spacing: 1em,
   )
+  set math.cases(gap: 1em)
 
   // 参照に関する設定
   // show ref: it => {
