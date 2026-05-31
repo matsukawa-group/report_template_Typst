@@ -813,21 +813,22 @@ $
   - 論文末尾の文献リストは本文での登場順でソート．
 
 
-文献 @Reynolds:PhilTransRoySoc1883,@Schmid:Springer2001,@Berghout:JFM2020,@塚原:ながれ2023,@塚原:ながれ2015,@塚原:伝熱2007
+// 文献 @Reynolds:PhilTransRoySoc1883,@Schmid:Springer2001,@Berghout:JFM2020,@塚原:ながれ2023,@塚原:ながれ2015,@塚原:伝熱2007
 
 #citen(
   <Reynolds:PhilTransRoySoc1883>,
   <Schmid:Springer2001>,
   <Berghout:JFM2020>,
-  <塚原:ながれ2023>,
-  <塚原:ながれ2015>,
-  <塚原:伝熱2007>,
+  // <塚原:ながれ2023>,
+  // <塚原:ながれ2015>,
+  // <塚原:伝熱2007>,
 )
 
 #bibliography-list(
   title: "参考文献",
-  ..bib-file(read("bibliography.bib"),
-  ..my-bib-style
-  ),
+  // ..bib-file(read("bibliography.bib"), ..my-bib-style),
+  ..bib-file(read("workspace/mybib_en.bib"), ..my-bib-style),
+  ..bib-file(read("workspace/mybib_ja.bib"), ..my-bib-style),
 )
+
 
