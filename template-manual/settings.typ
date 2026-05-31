@@ -375,6 +375,22 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-manual-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, "\"", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-manual-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
@@ -390,6 +406,8 @@
   bibtex-incollection-ja: bibtex-incollection-ja,
   bibtex-inproceedings-en: bibtex-inproceedings-en,
   bibtex-inproceedings-ja: bibtex-inproceedings-ja,
+  bibtex-manual-en: bibtex-manual-en,
+  bibtex-manual-ja: bibtex-manual-ja,
 )
 //=====================================
 
