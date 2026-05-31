@@ -211,7 +211,7 @@
   body
 }
 
-// 参考文献の設定
+//========== 参考文献の設定 ============
 #import "@preview/enja-bib:0.1.0": *
 #import bib-setting-plain: *
 
@@ -275,7 +275,16 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
-// showybox の設定
+#let my-bib-style = (
+  bibtex-article-en: bibtex-article-en,
+  bibtex-article-ja: bibtex-article-ja,
+  bibtex-book-en: bibtex-book-en,
+  bibtex-book-ja: bibtex-book-ja,
+)
+//=====================================
+
+
+//========== showybox の設定 ============
 #import "@preview/showybox:2.0.4": showybox as original-showybox
 #let showybox(
   title: none,
@@ -323,3 +332,4 @@
   body-color: rgb("#F5F5F5"),
   footer-color: rgb("#F5F5F5"),
 )
+//=======================================

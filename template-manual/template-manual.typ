@@ -809,7 +809,7 @@ $
   - 論文末尾の文献リストは著者名のアルファベット順でソート．
 - Vancouver 方式
   - 本文中での引用は番号．
-  - 本文中での引用例：～が明らかになっている #super[[1,2]]．
+  - 本文中での引用例：～が明らかになっている [1, 2]．
   - 論文末尾の文献リストは本文での登場順でソート．
 
 
@@ -827,10 +827,7 @@ $
 #bibliography-list(
   title: "参考文献",
   ..bib-file(read("bibliography.bib"),
-  bibtex-article-en: bibtex-article-en,
-  bibtex-article-ja: bibtex-article-ja,
-  bibtex-book-en: bibtex-book-en,
-  bibtex-book-ja: bibtex-book-ja,
+  ..my-bib-style
   ),
 )
 
