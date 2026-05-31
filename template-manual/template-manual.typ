@@ -633,6 +633,41 @@ $
   caption: [Please write the table caption here.],
 ) <tb:example_table>
 ```
+#h(1em)
+また，レポートや論文向きではないかもしれませんが，表 @tb:example_mytable のように行ごとに交互に色を変えることもできます．
+表 @tb:example_mytable の場合は `mytable` という名前の表デザインを新たに定義して使用しています．
+
+#figure(
+  placement: top,
+  mytable[
+    #table(
+      columns: (auto, auto, auto),
+      align: (left, center, right),
+
+      stroke: (x, y) => (if y == 0 { (top: 1.2pt + black, bottom: 1.2pt + black) } else { (bottom: 0.5pt + black) }),
+
+      table.header(
+        table.cell(align: center)[学会名],
+        table.cell(align: center)[会員種別],
+        table.cell(align: center)[年会費],
+      ),
+
+      table.cell(colspan: 3, align: center)[実在する学会],
+
+      [日本機械学会], [学生員], [$4,800$ 円],
+      [日本流体力学会], [学生会員], [$5,000$ 円],
+      [日本伝熱学会], [学生会員], [$4,000$ 円],
+
+      table.cell(colspan: 3, align: center)[実在しない学会],
+
+      table.cell(rowspan: 4, align: left + horizon)[日本架空学会], [小学生会員], [$-8,000$ 円],
+      [中高生会員], [$-5,000$ 円],
+      [大学生会員], [$-2,000$ 円],
+      [名誉学生会員], [$6.02 times 10^23$ 円],
+    )
+  ],
+  caption: [Example of a custom table design provided by this report template.],
+) <tb:example_mytable>
 
 
 = 定理環境・かっこいい枠
