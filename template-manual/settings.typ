@@ -96,6 +96,7 @@
   show math.equation: set block(
     spacing: 1em,
   )
+  set math.cases(gap: 1em)
 
   // 参照に関する設定
   // show ref: it => {
@@ -176,6 +177,32 @@
   )
 
   doc
+}
+
+#let mytable(body) = {
+  set table(
+    stroke: (x, y) => (
+      if y == 0 {
+        (top: black)
+        (bottom: black)
+      }
+        + if x == 0 {
+          (right: black)
+        }
+    ),
+    align: (x, y) => center,
+    fill: (x, y) => {
+      if y == 0 {
+        none
+      } else if calc.odd(y) {
+        rgb("F7FBFD")
+      } else {
+        rgb("E6F2F7")
+      }
+    },
+  )
+
+  body
 }
 
 // showybox の設定
