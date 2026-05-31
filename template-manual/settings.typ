@@ -211,6 +211,48 @@
   body
 }
 
+// 参考文献の設定
+#import "@preview/enja-bib:0.1.0": *
+#import bib-setting-plain: *
+
+#let doi-link(biblist, name) = {
+  let doi = biblist.at(name).sum()
+  link("https://doi.org/" + doi)[#raw(doi)]
+}
+
+#let url-link-if-no-doi(biblist, name) = {
+  if biblist.at("doi", default: ()).len() == 0 {
+    let url = biblist.at(name).sum()
+    [available from: <#link(url)[#raw(url)]>]
+  } else {
+    []
+  }
+}
+
+#let bibtex-article-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("journal", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-article-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("journal", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 // showybox の設定
 #import "@preview/showybox:2.0.4": showybox as original-showybox
 #let showybox(
