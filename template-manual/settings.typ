@@ -275,11 +275,35 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-booklet-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-booklet-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
   bibtex-book-en: bibtex-book-en,
   bibtex-book-ja: bibtex-book-ja,
+  bibtex-booklet-en: bibtex-booklet-en,
+  bibtex-booklet-ja: bibtex-booklet-ja,
 )
 //=====================================
 
