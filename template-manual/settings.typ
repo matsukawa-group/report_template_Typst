@@ -146,12 +146,13 @@
     let el = it.element
 
     if el != none and el.func() == figure {
-      numbering(el.numbering, ..el.counter.at(el.location()))
+      link(el.location())[
+        #numbering(el.numbering, ..el.counter.at(el.location()))
+      ]
     } else {
       it
     }
   }
-
   doc
 }
 
