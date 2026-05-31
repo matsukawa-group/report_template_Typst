@@ -335,14 +335,32 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-incollection-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
 
+#let bibtex-incollection-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
 
 #let bibtex-inproceedings-en = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
-  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -352,7 +370,7 @@
   ("title", (none, "「", title-en, "」, ", " ", (), ".")),
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
-  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -366,10 +384,12 @@
   bibtex-booklet-ja: bibtex-booklet-ja,
   bibtex-conference-en: bibtex-conference-en,
   bibtex-conference-ja: bibtex-conference-ja,
-  bibtex-inproceedings-en: bibtex-inproceedings-en,
-  bibtex-inproceedings-ja: bibtex-inproceedings-ja,
   bibtex-inbook-en: bibtex-inbook-en,
   bibtex-inbook-ja: bibtex-inbook-ja,
+  bibtex-incollection-en: bibtex-incollection-en,
+  bibtex-incollection-ja: bibtex-incollection-ja,
+  bibtex-inproceedings-en: bibtex-inproceedings-en,
+  bibtex-inproceedings-ja: bibtex-inproceedings-ja,
 )
 //=====================================
 
