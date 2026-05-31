@@ -378,7 +378,7 @@
 #let bibtex-manual-en = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, "\"", " ", (), ".")),
-  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -386,7 +386,25 @@
 #let bibtex-manual-ja = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "「", title-en, "」", " ", (), ".")),
-  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-mastersthesis-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("school", (none, "_Master's Thesis_, ", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-mastersthesis-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」", " ", (), ".")),
+  ("school", (none, "", all-emph, "修士論文", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -408,6 +426,8 @@
   bibtex-inproceedings-ja: bibtex-inproceedings-ja,
   bibtex-manual-en: bibtex-manual-en,
   bibtex-manual-ja: bibtex-manual-ja,
+  bibtex-mastersthesis-en: bibtex-mastersthesis-en,
+  bibtex-mastersthesis-ja: bibtex-mastersthesis-ja,
 )
 //=====================================
 
