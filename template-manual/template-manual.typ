@@ -828,7 +828,9 @@ $
   title: "参考文献",
   ..bib-file(read("bibliography.bib"),
   bibtex-article-en: bibtex-article-en,
-  bibtex-article-ja: bibtex-article-ja
+  bibtex-article-ja: bibtex-article-ja,
+  bibtex-book-en: bibtex-book-en,
+  bibtex-book-ja: bibtex-book-ja,
   ),
 )
 
