@@ -9,6 +9,7 @@
 #import "settings.typ": *
 
 #show: setup
+#show: bib-init
 
 // 複数の図を並べるための設定
 #import "@preview/hallon:0.1.3" as hallon: subfigure
@@ -789,6 +790,45 @@ $
   これもグレーのカラーボックスの内容です．
 ]
 
+= 参考文献の出力
 
 
+
+== 引用方式
+
+参考文献の引用方法は Harvard 方式と Vancouver 方式に大別できます．
+このレポートテンプレートでは Vancouver 方式を採用しています．
+
+- Harvard 方式
+  - 本文中での引用はいわゆる author-year 方式．「著者名」と「発行年」を記載する．
+  - 本文中での引用は苗字だけでの記載が多い．引用例：
+    - 著者 1 名：Reynolds (1883)
+    - 著者 2 名：Schmid and Henningson (2001)
+    - 著者 3 名以上：Berghout et al. (2020)
+  - et al. はラテン語で「その他」を意味する et alii の略．Italic 体で _et al._ と書くことも多い．
+  - 論文末尾の文献リストは著者名のアルファベット順でソート．
+- Vancouver 方式
+  - 本文中での引用は番号．
+  - 本文中での引用例：～が明らかになっている #super[[1,2]]．
+  - 論文末尾の文献リストは本文での登場順でソート．
+
+
+文献 @Reynolds:PhilTransRoySoc1883,@Schmid:Springer2001,@Berghout:JFM2020,@塚原:ながれ2023,@塚原:ながれ2015,@塚原:伝熱2007
+
+#citen(
+  <Reynolds:PhilTransRoySoc1883>,
+  <Schmid:Springer2001>,
+  <Berghout:JFM2020>,
+  <塚原:ながれ2023>,
+  <塚原:ながれ2015>,
+  <塚原:伝熱2007>,
+)
+
+#bibliography-list(
+  title: "参考文献",
+  ..bib-file(read("bibliography.bib"),
+  bibtex-article-en: bibtex-article-en,
+  bibtex-article-ja: bibtex-article-ja
+  ),
+)
 
