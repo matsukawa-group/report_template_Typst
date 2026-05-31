@@ -179,6 +179,32 @@
   doc
 }
 
+#let mytable(body) = {
+  set table(
+    stroke: (x, y) => (
+      if y == 0 {
+        (top: black)
+        (bottom: black)
+      }
+        + if x == 0 {
+          (right: black)
+        }
+    ),
+    align: (x, y) => center,
+    fill: (x, y) => {
+      if y == 0 {
+        none
+      } else if calc.odd(y) {
+        rgb("F7FBFD")
+      } else {
+        rgb("E6F2F7")
+      }
+    },
+  )
+
+  body
+}
+
 // showybox の設定
 #import "@preview/showybox:2.0.4": showybox as original-showybox
 #let showybox(
