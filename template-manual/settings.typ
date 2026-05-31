@@ -313,7 +313,27 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-inbook-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
 
+#let bibtex-inbook-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("pages", (none, "", all-return, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
 
 
 
@@ -348,6 +368,8 @@
   bibtex-conference-ja: bibtex-conference-ja,
   bibtex-inproceedings-en: bibtex-inproceedings-en,
   bibtex-inproceedings-ja: bibtex-inproceedings-ja,
+  bibtex-inbook-en: bibtex-inbook-en,
+  bibtex-inbook-ja: bibtex-inbook-ja,
 )
 //=====================================
 
