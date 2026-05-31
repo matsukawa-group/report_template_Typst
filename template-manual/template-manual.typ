@@ -241,42 +241,30 @@ $s i n x$ などと書くことのないよう気をつけましょう．
 
 #link("https://typst.app/universe/package/physica/")[`physica`] パッケージでサポートされている数式コマンドの一部を以下に示します．
 
-#align(center)[
-  #set table(
-    stroke: (x, y) => (
-      if y == 0 {
-        (top: black)
-        (bottom: black)
-      }
-        + if x == 0 {
-          (right: black)
-        }
-    ),
-    align: (x, y) => center,
-    fill: (x, y) => {
-      if y == 0 {
-        none
-      } else if calc.odd(y) {
-        rgb("F7FBFD")
-      } else {
-        rgb("E6F2F7")
-      }
-    },
-  )
-  #table(
-    columns: (90mm, 70mm),
-    inset: 6pt,
-    table.header([コマンド], [出力]),
-    [`va(u)`, `vb(u)`, `vu(u)`], $va(u), vb(u), vu(u)$,
-    [`dd(x)`, `dd(x, y)`, `dd(x, 2)`, `dd(x, [n])`], $dd(x), dd(x, y), dd(x, 2), dd(x, [n])$,
-    [`dv(, x)`, `dv(f, x)`, `dv(f, x, n)`], $display(dv(, x)"," dv(f, x)"," dv(f, x, n))$,
-    [`pdv(, x)`, `pdv(f, x)`, `pdv(f, x, y)`, `pdv(f, x, [n])`],
-    $display(pdv(, x)"," pdv(f, x)"," pdv(f, x, y)"," pdv(f, x, [n]))$,
-    [`dv(, x, d: upright(D))`, `dv(f, x, d: upright(D))`, `dv(f, x, n, d: upright(D))`],
-    $display(dv(, x, d: upright(D))"," dv(f, x, d: upright(D))"," dv(f, x, n, d: upright(D)))$,
-    table.hline(),
-  )
+#showybox(
+  frame: bluebox,
+  title: [`physica` パッケージの数式コマンド],
+)[
+  #align(center)[
+    #mytable[
+      #table(
+        columns: (90mm, 50mm),
+        inset: 6pt,
+        table.header([コマンド], [出力]),
+        [`va(u)`, `vb(u)`, `vu(u)`], $va(u), vb(u), vu(u)$,
+        [`dd(x)`, `dd(x, y)`, `dd(x, 2)`, `dd(x, [n])`], $dd(x), dd(x, y), dd(x, 2), dd(x, [n])$,
+        [`dv(, x)`, `dv(f, x)`, `dv(f, x, n)`], $display(dv(, x)"," dv(f, x)"," dv(f, x, n))$,
+        [`pdv(, x)`, `pdv(f, x)`, `pdv(f, x, y)`, `pdv(f, x, [n])`],
+        $display(pdv(, x)"," pdv(f, x)"," pdv(f, x, y)"," pdv(f, x, [n]))$,
+        [`dv(, x, d: upright(D))`, `dv(f, x, d: upright(D))`, `dv(f, x, n, d: upright(D))`],
+        $display(dv(, x, d: upright(D))"," dv(f, x, d: upright(D))"," dv(f, x, n, d: upright(D)))$,
+        table.hline(),
+      )
+    ]
+  ]
 ]
+
+
 
 
 === 複数行に亘る数式の書き方
@@ -339,42 +327,28 @@ $
 単位のみの出力は `#unit[]` コマンド，数値と単位を併せての出力は `#qty[][]` コマンドを使用します．
 `#qty[][]` コマンドを使用すると，数値と単位の間に適切な長さの空白を自動で入れてくれます．
 
-#align(center)[
-  #set table(
-    stroke: (x, y) => (
-      if y == 0 {
-        (top: black)
-        (bottom: black)
-      }
-        + if x == 0 {
-          (right: black)
-        }
-    ),
-    align: (x, y) => center,
-    fill: (x, y) => {
-      if y == 0 {
-        none
-      } else if calc.odd(y) {
-        rgb("F7FBFD")
-      } else {
-        rgb("E6F2F7")
-      }
-    },
-  )
-  #table(
-    columns: (90mm, 70mm),
-    inset: 6pt,
-    table.header([コマンド], [出力]),
-    [`#unit[W / ((m^2 K))]`], $#unit[W / ((m^2 K))]$,
-    [`#unit(per-mode: "power")[W / (m^2 K)]`], $#unit(per-mode: "power")[W / (m^2 K)]$,
-    [`#unit(per-mode: "fraction")[W / (m^2 K)]`], $#unit(per-mode: "fraction")[W / (m^2 K)]$,
-    [`#qty[45][W / ((m^2 K))]`], $#qty[45][W / ((m^2 K))]$,
-    [`#qty[45][u:m]`], $#qty[45][u:m]$,
-    [`45 degree`], $45 degree$,
-    [`#qty[45][celsius]`], $#qty[45][celsius]$,
-    [`#qty[45][mL]`], $#qty[45][mL]$,
-    table.hline(),
-  )
+#showybox(
+  frame: bluebox,
+  title: [`fancy-units` パッケージの単位コマンド],
+)[
+  #align(center)[
+    #mytable[
+      #table(
+        columns: (90mm, 50mm),
+        inset: 6pt,
+        table.header([コマンド], [出力]),
+        [`#unit[W / ((m^2 K))]`], $#unit[W / ((m^2 K))]$,
+        [`#unit(per-mode: "power")[W / (m^2 K)]`], $#unit(per-mode: "power")[W / (m^2 K)]$,
+        [`#unit(per-mode: "fraction")[W / (m^2 K)]`], $#unit(per-mode: "fraction")[W / (m^2 K)]$,
+        [`#qty[45][W / ((m^2 K))]`], $#qty[45][W / ((m^2 K))]$,
+        [`#qty[45][u:m]`], $#qty[45][u:m]$,
+        [`45 degree`], $45 degree$,
+        [`#qty[45][celsius]`], $#qty[45][celsius]$,
+        [`#qty[45][mL]`], $#qty[45][mL]$,
+        table.hline(),
+      )
+    ]
+  ]
 ]
 
 最後に示したミリリットル $#unit[mL]$ には気をつけてください．リットル $#unit[L]$ を昔は ℓ と表記したこともありましたが，「単位は直立体」という原則に合わないのでやめましょう．
@@ -455,7 +429,7 @@ $
 #showybox(
   frame: bluebox,
   title: [青のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは青のカラーボックスの内容です．
 ][
@@ -465,7 +439,7 @@ $
 #showybox(
   frame: redbox,
   title: [赤のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは赤のカラーボックスの内容です．
 ][
@@ -475,7 +449,7 @@ $
 #showybox(
   frame: greenbox,
   title: [緑のカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これは緑のカラーボックスの内容です．
 ][
@@ -485,7 +459,7 @@ $
 #showybox(
   frame: graybox,
   title: [グレーのカラーボックス],
-  footer: [フッター部分]
+  footer: [フッター部分],
 )[
   これはグレーのカラーボックスの内容です．
 ][
