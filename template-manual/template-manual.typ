@@ -12,7 +12,7 @@
 
 // 複数の図を並べるための設定
 #import "@preview/hallon:0.1.3" as hallon: subfigure
-#import "@preview/smartaref:0.1.0": cref, Cref
+#import "@preview/smartaref:0.1.0": Cref, cref
 #show: hallon.style-figures
 #show figure.where(kind: image): set figure(supplement: "Figure")
 #show figure.where(kind: image): set figure.caption(separator: h(1em))
@@ -376,14 +376,14 @@ $
 
 #figure(
   placement: top,
-  image("figure/example-image.pdf", width: 60%),
+  image("figure/example-image.pdf", width: 65%),
   caption: [Please write the figure caption here.],
 )<fig:one_figure>
 
 ```Typst
 #figure(
   placement: top,
-  image("figure/example-image.pdf", width: 60%),
+  image("figure/example-image.pdf", width: 65%),
   caption: [Please write the figure caption here.],
 )<fig:one_figure>
 
@@ -421,21 +421,21 @@ $
 
 #figure(
   placement: top,
-	grid(
-		columns: 2,
-		gutter: 2.5mm,
-		subfigure(
-			image("figure/example-image-a.pdf", width: 100%),
-			caption: [Left figure caption.],
-			label: <subfig:two_figures-a>,
-		),
-		subfigure(
-			image("figure/example-image-b.pdf", width: 100%),
-			caption: [Right figure caption.],
-			label: <subfig:two_figures-b>,
-		),
-	),
-	caption: [Two figures placed side by side.],
+  grid(
+    columns: 2,
+    gutter: 2.5mm,
+    subfigure(
+      image("figure/example-image-a.pdf", width: 100%),
+      caption: [Left figure caption.],
+      label: <subfig:two_figures-a>,
+    ),
+    subfigure(
+      image("figure/example-image-b.pdf", width: 100%),
+      caption: [Right figure caption.],
+      label: <subfig:two_figures-b>,
+    ),
+  ),
+  caption: [Two figures placed side by side.],
 ) <fig:two_figures>
 ```Typst
 #figure(
@@ -460,65 +460,86 @@ $
 
 #figure(
   placement: top,
-	grid(
-		columns: 3,
-		gutter: 2.5mm,
-		subfigure(
-			image("figure/example-image-a.pdf", width: 100%),
-			caption: [Left figure caption.],
-			label: <subfig:three_figures-a>,
-		),
-		subfigure(
-			image("figure/example-image-b.pdf", width: 100%),
-			caption: [Center figure caption.],
-			label: <subfig:three_figures-b>,
-		),
-		subfigure(
-			image("figure/example-image-c.pdf", width: 100%),
-			caption: [Right figure caption.],
-			label: <subfig:three_figures-c>,
-		),
-	),
-	caption: [Three figures placed side by side.],
+  grid(
+    columns: 3,
+    gutter: 2.5mm,
+    subfigure(
+      image("figure/example-image-a.pdf", width: 100%),
+      caption: [Left figure caption.],
+      label: <subfig:three_figures-a>,
+    ),
+    subfigure(
+      image("figure/example-image-b.pdf", width: 100%),
+      caption: [Center figure caption.],
+      label: <subfig:three_figures-b>,
+    ),
+    subfigure(
+      image("figure/example-image-c.pdf", width: 100%),
+      caption: [Right figure caption.],
+      label: <subfig:three_figures-c>,
+    ),
+  ),
+  caption: [Three figures placed side by side.],
 ) <fig:three_figures>
 
 
 #figure(
   placement: top,
-	grid(
-		columns: 2,
-		gutter: 3.5mm,
-		subfigure(
-			image("figure/example-image-a.pdf", width: 100%),
-			caption: [Upper-left figure caption.],
-			label: <subfig:four_figures-a>,
-		),
-		subfigure(
-			image("figure/example-image-b.pdf", width: 100%),
-			caption: [Upper-right figure caption.],
-			label: <subfig:four_figures-b>,
-		),
-		subfigure(
-			image("figure/example-image-c.pdf", width: 100%),
-			caption: [Lower-left figure caption.],
-			label: <subfig:four_figures-c>,
-		),
-		subfigure(
-			image("figure/example-image.pdf", width: 100%),
-			caption: [Lower-right figure caption.],
-			label: <subfig:four_figures-d>,
-		),
-	),
-	caption: [Four figures placed in a $2 times 2$ grid.],
+  grid(
+    columns: 2,
+    gutter: 3.5mm,
+    subfigure(
+      image("figure/example-image-a.pdf", width: 100%),
+      caption: [Upper-left figure caption.],
+      label: <subfig:four_figures-a>,
+    ),
+    subfigure(
+      image("figure/example-image-b.pdf", width: 100%),
+      caption: [Upper-right figure caption.],
+      label: <subfig:four_figures-b>,
+    ),
+
+    subfigure(
+      image("figure/example-image-c.pdf", width: 100%),
+      caption: [Lower-left figure caption.],
+      label: <subfig:four_figures-c>,
+    ),
+    subfigure(
+      image("figure/example-image.pdf", width: 100%),
+      caption: [Lower-right figure caption.],
+      label: <subfig:four_figures-d>,
+    ),
+  ),
+  caption: [Four figures placed in a $2 times 2$ grid.],
 ) <fig:four_figures>
 
-
-`ref`: See @fig:two_figures, @subfig:two_figures-a and @subfig:two_figures-b.
-
-`cref`: See #cref[@fig:two_figures @subfig:two_figures-a @subfig:two_figures-b].
-
-`Cref`: #Cref[@fig:two_figures @subfig:two_figures-a @subfig:two_figures-b] are ...
-
+#showybox(
+  frame: bluebox,
+  title: [図のラベルの参照方法],
+)[
+  #align(center)[
+    #mytable[
+      #table(
+        columns: (120mm, 30mm),
+        inset: 6pt,
+        table.header([コマンド], [出力]),
+        [`@fig:four_figures`], [@fig:four_figures],
+        [`@subfig:four_figures-a`], [@subfig:four_figures-a],
+        [`@fig:four_figures@subfig:four_figures-a`], [@fig:four_figures@subfig:four_figures-a],
+        [`@fig:four_figures(@subfig:four_figures-a)`], [@fig:four_figures(@subfig:four_figures-a)],
+        [`(@subfig:four_figures-a, @subfig:four_figures-b)`], [(@subfig:four_figures-a, @subfig:four_figures-b)],
+        [`(@subfig:four_figures-a–@subfig:four_figures-c)`], [(@subfig:four_figures-a–@subfig:four_figures-c)],
+        table.hline(),
+      )
+    ]
+  ]
+]
+#h(1em)
+また，`subfigure` を使うことでそれぞれのサブ図にラベルをつけることができます．
+参照時には `@fig:four_figures` と入力すると @fig:four_figures のように全体の図を参照できますし，`@subfig:four_figures-a` と入力すると @subfig:four_figures-a のようにサブ図を参照できます．
+図 @fig:four_figures(@subfig:four_figures-a) のように全体の図とサブ図を両方参照したいときは `@fig:four_figures(@subfig:four_figures-a)` と入力すれば出力できます．
+このとき，`@subfig:four_figures-a` 前後の括弧 `()` を忘れないでください．
+括弧をデフォルトで出力するような設定もできますが，図 @fig:four_figures(@subfig:four_figures-a, @subfig:four_figures-b) のように複数のサブ図を参照したいときもあるので，このテンプレートでは括弧は手動で入力する方式にしています．
 
 == 表の配置
 <ssec:table>
