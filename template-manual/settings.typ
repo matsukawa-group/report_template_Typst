@@ -98,19 +98,6 @@
   )
   set math.cases(gap: 1em)
 
-  // 参照に関する設定
-  // show ref: it => {
-  //   let eq = math.equation
-  //   let el = it.element
-  //   // Skip all other references.
-  //   if el == none or el.func() != eq { return it }
-  //   // Override equation references.
-  //   link(el.location(), numbering(
-  //     el.numbering,
-  //     ..counter(eq).at(el.location()),
-  //   ))
-  // }
-
   // リンク
   show link: set text(fill: blue)
   show ref: set text(fill: blue)
@@ -147,13 +134,18 @@
     let el = it.element
 
     if el != none and el.func() == figure {
-      link(el.location())[
-        #numbering(el.numbering, ..el.counter.at(el.location()))
-      ]
+      link(
+        el.location(),
+        numbering(
+          el.numbering,
+          ..el.counter.at(el.location()),
+        ),
+      )
     } else {
       it
     }
   }
+
   doc
 }
 
