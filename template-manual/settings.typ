@@ -185,13 +185,15 @@
   ..args,
   body,
 ) = {
+  let title-arg = if title == none {
+    (:)
+  } else {
+    (title: text(font: "Segoe UI")[#title])
+  }
+
   original-showybox(
     ..args,
-    title: if title == none {
-      none
-    } else {
-      text(font: "Segoe UI")[#title]
-    },
+    ..title-arg,
   )[
     #body
   ]
