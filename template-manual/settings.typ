@@ -229,6 +229,11 @@
   }
 }
 
+#let arxiv-link(biblist, name) = {
+  let eprint = biblist.at(name).sum()
+  [arXiv:#h(0.3em)#link("https://arxiv.org/abs/" + eprint)[#raw(eprint)]]
+}
+
 #let bibtex-article-en = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
@@ -236,9 +241,9 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
-  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
-  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("pages", (none, ", ", all-return, "", "", (), ".")),
+  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-article-ja = (
@@ -248,9 +253,9 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", all-return, "", ", ", (), ".")),
-  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
-  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("pages", (none, ", ", all-return, "", "", (), ".")),
+  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-book-en = (
@@ -402,9 +407,29 @@
 
 #let bibtex-mastersthesis-ja = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
-  ("title", (none, "「", title-en, "」", " ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
   ("school", (none, "", all-emph, "修士論文", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-misc-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-misc-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -428,6 +453,8 @@
   bibtex-manual-ja: bibtex-manual-ja,
   bibtex-mastersthesis-en: bibtex-mastersthesis-en,
   bibtex-mastersthesis-ja: bibtex-mastersthesis-ja,
+  bibtex-misc-en: bibtex-misc-en,
+  bibtex-misc-ja: bibtex-misc-ja,
 )
 //=====================================
 
