@@ -211,6 +211,29 @@
   body
 }
 
+#let mytable2(body) = {
+  set table(
+    stroke: (x, y) => (
+      if y == 0 {
+        (top: black)
+      }
+        + if x == 0 {
+          (right: black)
+        }
+    ),
+    align: (x, y) => center,
+    fill: (x, y) => {
+      if calc.odd(y) {
+        rgb("F7FBFD")
+      } else {
+        rgb("E6F2F7")
+      }
+    },
+  )
+
+  body
+}
+
 //========== 参考文献の設定 ============
 #import "@preview/enja-bib:0.1.0": *
 #import bib-setting-plain: *
@@ -243,7 +266,7 @@
   ("number", (none, "(", all-return, ")", "", (), ").")),
   ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
   ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
-  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-article-ja = (

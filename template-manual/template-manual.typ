@@ -45,7 +45,7 @@
     //   email: "第二著者のメールアドレス",
     // ),
   ),
-  date: [2026 年 5 月 23 日],
+  date: [2026 年 6 月 1 日],
   doc,
 )
 
@@ -792,12 +792,7 @@ $
 
 = 参考文献の出力
 
-
-
-== 引用方式
-
 参考文献の引用方法は Harvard 方式と Vancouver 方式に大別できます．
-このレポートテンプレートでは Vancouver 方式を採用しています．
 
 - Harvard 方式
   - 本文中での引用はいわゆる author-year 方式．「著者名」と「発行年」を記載する．
@@ -812,23 +807,67 @@ $
   - 本文中での引用例：～が明らかになっている [1, 2]．
   - 論文末尾の文献リストは本文での登場順でソート．
 
+このレポートテンプレートでは #link("https://typst.app/universe/package/enja-bib/")[`enja-bib`] パッケージを利用して，BibTeX 形式の文献データベースから参考文献を出力しているため，日本語文献と英語文献で異なるスタイルを適用できるようにしています．
 
-// 文献 @Reynolds:PhilTransRoySoc1883,@Schmid:Springer2001,@Berghout:JFM2020,@塚原:ながれ2023,@塚原:ながれ2015,@塚原:伝熱2007
+== `bib` ファイルについて
 
-#citen(
-  <Reynolds:PhilTransRoySoc1883>,
-  <Schmid:Springer2001>,
-  <Berghout:JFM2020>,
-  // <塚原:ながれ2023>,
-  // <塚原:ながれ2015>,
-  // <塚原:伝熱2007>,
-)
+ユーザー側で書誌情報の管理をするためのファイルが `bib` ファイルです．
+`bib` ファイルに書かれた書誌情報をもとにして，TeX/LaTeX では BibTeX/biblatex の機能を使用して文献リストを自動で作成します．
+Typst でも `bib` ファイルを使用して文献リストを自動で作成することができます．
+`bib` ファイルの書き方は #link("https://github.com/Yuki-MATSUKAWA/JSME-bst")[`JSME-bst`] 内の #link("https://github.com/Yuki-MATSUKAWA/JSME-bst/blob/main/JSME-template1.pdf")[`JSME-template1.pdf`] で詳細に書いてあるのでそちらをよく読んでください．
+ウェブ上にも `bib` ファイルの書き方を解説しているサイトはたくさんあるので，そちらも参考にしてください．
+`bib` ファイルに入力する書誌情報は次のような構造になっています．
+
+```bibtex
+@エントリー名{参照キー,
+    フィールド 1 = {},
+    フィールド 2 = {},
+    フィールド 3 = {}
+}
+```
+
+だいたいの雑誌論文のウェブサイトでは BibTeX 形式で書誌情報を出力できる機能があるのでそこから `bib` ファイルをダウンロードします．
+もちろん，ダウンロードした `bib` ファイルを自分で書き換えることもできますし，自分で一から `bib` ファイルを作成することも可能です．
+
+== 本文中での引用方法
+
+文献を文章中で引用する際の主なコマンドは以下の通りです．
+
+#showybox(
+  frame: bluebox,
+  title: [文献を引用するためのコマンド],
+)[
+  #align(center)[
+    #mytable2[
+      #table(
+        columns: (20mm, 130mm),
+        inset: 6pt,
+        // table.header([コマンド], [出力]),
+        [コマンド], [`@Reynolds:PhilTransRoySoc1883`],
+        [出力], [@Reynolds:PhilTransRoySoc1883],
+        [コマンド], [`#citen(<Reynolds:PhilTransRoySoc1883>)`],
+        [出力], [#citen(<Reynolds:PhilTransRoySoc1883>)],
+        [コマンド], [`#citet(<Reynolds:PhilTransRoySoc1883>)`],
+        [出力], [#citet(<Reynolds:PhilTransRoySoc1883>)],
+        [コマンド], [`#citep(<Reynolds:PhilTransRoySoc1883>)`],
+        [出力], [#citep(<Reynolds:PhilTransRoySoc1883>)],
+        [コマンド], [`@Reynolds:PhilTransRoySoc1883,@Matsukawa:PoF2022`],
+        [出力], [@Reynolds:PhilTransRoySoc1883,@Matsukawa:PoF2022],
+        [コマンド], [`#citen(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)`],
+        [出力], [#citen(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)],
+        [コマンド], [`#citet(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)`],
+        [出力], [#citet(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)],
+        [コマンド], [`#citep(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)`],
+        [出力], [#citep(<Reynolds:PhilTransRoySoc1883>,<Matsukawa:PoF2022>)],
+        table.hline(),
+      )
+    ]
+  ]
+]
 
 #bibliography-list(
   title: "参考文献",
-  // ..bib-file(read("bibliography.bib"), ..my-bib-style),
-  ..bib-file(read("workspace/mybib_en.bib"), ..my-bib-style),
-  ..bib-file(read("workspace/mybib_ja.bib"), ..my-bib-style),
+  ..bib-file(read("bibliography.bib"), ..my-bib-style),
 )
 
 
