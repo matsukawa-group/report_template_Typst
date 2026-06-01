@@ -82,5 +82,6 @@ git push origin HEAD
 
 - [Typst ドキュメント 日本語版](https://typst-jp.github.io/docs/)
 - [Typstの使い方](https://kumaroot.readthedocs.io/ja/latest/typst/typst-usage.html)
+- [`TUS-ME_thesis_typst_template`](https://github.com/tsukahara-lab/TUS-ME_thesis_typst_template)
 - [`TUS-ME_thesis_template`](https://github.com/tsukahara-lab/TUS-ME_thesis_template)
 
