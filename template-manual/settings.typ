@@ -490,6 +490,22 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-unpublished-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, "\"", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-unpublished-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
@@ -517,6 +533,8 @@
   bibtex-proceedings-ja: bibtex-proceedings-ja,
   bibtex-techreport-en: bibtex-techreport-en,
   bibtex-techreport-ja: bibtex-techreport-ja,
+  bibtex-unpublished-en: bibtex-unpublished-en,
+  bibtex-unpublished-ja: bibtex-unpublished-ja,
 )
 //=====================================
 
