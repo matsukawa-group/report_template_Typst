@@ -434,6 +434,24 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-phdthesis-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("school", (none, "_Ph.D. Dissertation_, ", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-phdthesis-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("school", (none, "", all-emph, "博士論文", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
@@ -455,6 +473,8 @@
   bibtex-mastersthesis-ja: bibtex-mastersthesis-ja,
   bibtex-misc-en: bibtex-misc-en,
   bibtex-misc-ja: bibtex-misc-ja,
+  bibtex-phdthesis-en: bibtex-phdthesis-en,
+  bibtex-phdthesis-ja: bibtex-phdthesis-ja,
 )
 //=====================================
 
