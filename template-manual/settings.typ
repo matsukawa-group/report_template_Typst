@@ -470,6 +470,26 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-techreport-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("institution", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-techreport-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("institution", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
@@ -495,6 +515,8 @@
   bibtex-phdthesis-ja: bibtex-phdthesis-ja,
   bibtex-proceedings-en: bibtex-proceedings-en,
   bibtex-proceedings-ja: bibtex-proceedings-ja,
+  bibtex-techreport-en: bibtex-techreport-en,
+  bibtex-techreport-ja: bibtex-techreport-ja,
 )
 //=====================================
 
