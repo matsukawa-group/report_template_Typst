@@ -434,6 +434,27 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-online-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
+)
+
+#let bibtex-online-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
+)
+
+
 #let bibtex-phdthesis-en = (
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
@@ -527,6 +548,8 @@
   bibtex-mastersthesis-ja: bibtex-mastersthesis-ja,
   bibtex-misc-en: bibtex-misc-en,
   bibtex-misc-ja: bibtex-misc-ja,
+  bibtex-online-en: bibtex-online-en,
+  bibtex-online-ja: bibtex-online-ja,
   bibtex-phdthesis-en: bibtex-phdthesis-en,
   bibtex-phdthesis-ja: bibtex-phdthesis-ja,
   bibtex-proceedings-en: bibtex-proceedings-en,
