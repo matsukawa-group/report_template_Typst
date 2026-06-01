@@ -452,6 +452,24 @@
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
+#let bibtex-proceedings-en = (
+  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-proceedings-ja = (
+  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", title-en, "」, ", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
 #let my-bib-style = (
   bibtex-article-en: bibtex-article-en,
   bibtex-article-ja: bibtex-article-ja,
@@ -475,6 +493,8 @@
   bibtex-misc-ja: bibtex-misc-ja,
   bibtex-phdthesis-en: bibtex-phdthesis-en,
   bibtex-phdthesis-ja: bibtex-phdthesis-ja,
+  bibtex-proceedings-en: bibtex-proceedings-en,
+  bibtex-proceedings-ja: bibtex-proceedings-ja,
 )
 //=====================================
 
