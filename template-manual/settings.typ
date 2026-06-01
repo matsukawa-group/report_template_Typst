@@ -211,7 +211,381 @@
   body
 }
 
-// showybox の設定
+#let mytable2(body) = {
+  set table(
+    stroke: (x, y) => (
+      if y == 0 {
+        (top: black)
+      }
+        + if x == 0 {
+          (right: black)
+        }
+    ),
+    align: (x, y) => center,
+    fill: (x, y) => {
+      if calc.odd(y) {
+        rgb("F7FBFD")
+      } else {
+        rgb("E6F2F7")
+      }
+    },
+  )
+
+  body
+}
+
+//========== 参考文献の設定 ============
+#import "@preview/enja-bib:0.1.0": *
+#import bib-setting-plain: *
+
+#let doi-link(biblist, name) = {
+  let doi = biblist.at(name).sum()
+  link("https://doi.org/" + doi)[#raw(doi)]
+}
+
+#let url-link-if-no-doi(biblist, name) = {
+  if biblist.at("doi", default: ()).len() == 0 {
+    let url = biblist.at(name).sum()
+    [available from: <#link(url)[#raw(url)]>]
+  } else {
+    []
+  }
+}
+
+#let arxiv-link(biblist, name) = {
+  let eprint = biblist.at(name).sum()
+  [arXiv:#h(0.3em)#link("https://arxiv.org/abs/" + eprint)[#raw(eprint)]]
+}
+
+#let bibtex-article-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("journal", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
+  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-article-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("journal", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
+  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-book-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-book-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("publisher", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-booklet-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-booklet-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-conference-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-conference-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("booktitle", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-inbook-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-inbook-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("publisher", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
+  ("volume", (none, "", all-bold, "", "", (), ".")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-incollection-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-incollection-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("booktitle", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-inproceedings-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-inproceedings-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("booktitle", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
+  ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-manual-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, "\"", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-manual-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-mastersthesis-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("school", (none, "_Master's Thesis_, ", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-mastersthesis-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("school", (none, "", all-return, "修士論文", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-misc-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-misc-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-online-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
+)
+
+#let bibtex-online-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("howpublished", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+  ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
+)
+
+
+#let bibtex-phdthesis-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("school", (none, "_Ph.D. Dissertation_, ", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-phdthesis-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("school", (none, "", all-return, "博士論文", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-proceedings-en = (
+  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("publisher", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-proceedings-ja = (
+  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("publisher", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-techreport-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
+  ("institution", (none, "", all-emph, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
+  ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-techreport-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」, ", " ", (), ".")),
+  ("institution", (none, "", all-return, "", ", ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
+  ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-unpublished-en = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "\"", title-en, "\"", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let bibtex-unpublished-ja = (
+  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("title", (none, "「", all-return, "」", " ", (), ".")),
+  ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
+)
+
+#let my-bib-style = (
+  bibtex-article-en: bibtex-article-en,
+  bibtex-article-ja: bibtex-article-ja,
+  bibtex-book-en: bibtex-book-en,
+  bibtex-book-ja: bibtex-book-ja,
+  bibtex-booklet-en: bibtex-booklet-en,
+  bibtex-booklet-ja: bibtex-booklet-ja,
+  bibtex-conference-en: bibtex-conference-en,
+  bibtex-conference-ja: bibtex-conference-ja,
+  bibtex-inbook-en: bibtex-inbook-en,
+  bibtex-inbook-ja: bibtex-inbook-ja,
+  bibtex-incollection-en: bibtex-incollection-en,
+  bibtex-incollection-ja: bibtex-incollection-ja,
+  bibtex-inproceedings-en: bibtex-inproceedings-en,
+  bibtex-inproceedings-ja: bibtex-inproceedings-ja,
+  bibtex-manual-en: bibtex-manual-en,
+  bibtex-manual-ja: bibtex-manual-ja,
+  bibtex-mastersthesis-en: bibtex-mastersthesis-en,
+  bibtex-mastersthesis-ja: bibtex-mastersthesis-ja,
+  bibtex-misc-en: bibtex-misc-en,
+  bibtex-misc-ja: bibtex-misc-ja,
+  bibtex-online-en: bibtex-online-en,
+  bibtex-online-ja: bibtex-online-ja,
+  bibtex-phdthesis-en: bibtex-phdthesis-en,
+  bibtex-phdthesis-ja: bibtex-phdthesis-ja,
+  bibtex-proceedings-en: bibtex-proceedings-en,
+  bibtex-proceedings-ja: bibtex-proceedings-ja,
+  bibtex-techreport-en: bibtex-techreport-en,
+  bibtex-techreport-ja: bibtex-techreport-ja,
+  bibtex-unpublished-en: bibtex-unpublished-en,
+  bibtex-unpublished-ja: bibtex-unpublished-ja,
+)
+//=====================================
+
+
+//========== showybox の設定 ============
 #import "@preview/showybox:2.0.4": showybox as original-showybox
 #let showybox(
   title: none,
@@ -259,3 +633,4 @@
   body-color: rgb("#F5F5F5"),
   footer-color: rgb("#F5F5F5"),
 )
+//=======================================
