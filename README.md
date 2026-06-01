@@ -74,3 +74,13 @@ git switch main && git merge upstream/main
 # 自身のリモートリポジトリを更新
 git push origin HEAD
 ```
+
+## 参考文献
+
+レポート執筆のほか，Typst の使用方法に関して参考になる文献を紹介します．
+また，このリポジトリの `template-manual/` のディレクトリには Typst の使い方に関して簡単な説明があります．
+
+- [Typst ドキュメント 日本語版](https://typst-jp.github.io/docs/)
+- [Typstの使い方](https://kumaroot.readthedocs.io/ja/latest/typst/typst-usage.html)
+- [`TUS-ME_thesis_template`](https://github.com/tsukahara-lab/TUS-ME_thesis_template)
+
