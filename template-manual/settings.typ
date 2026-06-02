@@ -129,18 +129,30 @@
 
   // 図とキャプションの間のスペースを設定
   set figure(gap: 1em)
-  // 参照時に図番号だけ表示
+  // 参照時に図・表は番号だけ表示
   show ref: it => {
     let el = it.element
 
     if el != none and el.func() == figure {
-      link(
-        el.location(),
-        numbering(
-          el.numbering,
-          ..el.counter.at(el.location()),
-        ),
-      )
+      let loc = el.location()
+
+      if el.kind == image {
+        link(loc)[
+          #numbering(
+            el.numbering,
+            ..counter(figure.where(kind: image)).at(loc),
+          )
+        ]
+      } else if el.kind == table {
+        link(loc)[
+          #numbering(
+            el.numbering,
+            ..counter(figure.where(kind: table)).at(loc),
+          )
+        ]
+      } else {
+        it
+      }
     } else {
       it
     }
