@@ -149,40 +149,90 @@
   doc
 }
 
-// 著者情報と日付の表示
+// 表紙・著者情報と日付の表示
 #let author(
   authors: (),
   date: none,
+  cover: false,
   doc,
 ) = {
-  place(
-    top + center,
-    float: true,
-    scope: "parent",
-    clearance: 3em,
-    {
-      title()
+  if cover {
+    // 表紙あり
+    page(
+      numbering: "i",
+      footer: none,
+    )[
+      #align(center + horizon)[
+        #line(length: 100%, stroke: 2pt + rgb("#1f4e79"))
+        #v(-0.2em)
+        #line(length: 100%, stroke: 1pt + rgb("#1f4e79"))
+        #v(0.3em)
+        #title()
+        #v(1em)
+        #line(length: 100%, stroke: 1pt + rgb("#1f4e79"))
+        #v(-0.2em)
+        #line(length: 100%, stroke: 2pt + rgb("#1f4e79"))
 
-      let count = authors.len()
-      let ncols = calc.min(count, 2)
-      grid(
-        columns: (1fr,) * ncols,
-        row-gutter: 24pt,
-        ..authors.map(author => [
-          #author.name \
-          #author.affiliation \
-          #link("mailto:" + author.email)
-        ]),
-      )
+        #v(10em)
 
-      if date != none {
-        v(1em)
-        align(center)[#date]
-      }
-    },
-  )
+        #let count = authors.len()
+        #let ncols = calc.min(count, 2)
 
-  doc
+        #grid(
+          columns: (1fr,) * ncols,
+          row-gutter: 24pt,
+          column-gutter: 36pt,
+          ..authors.map(author => [
+            #text(14pt, weight: "bold")[#author.name] \
+            #v(0.5em)
+            #author.affiliation \
+            #v(0.5em)
+            #link("mailto:" + author.email)
+          ]),
+        )
+
+        #if date != none {
+          v(15em)
+          text(12pt)[#date]
+        }
+      ]
+    ]
+    counter(page).update(1)
+
+    pagebreak()
+    doc
+  } else {
+    // 表紙なし：従来通り
+    place(
+      top + center,
+      float: true,
+      scope: "parent",
+      clearance: 3em,
+      {
+        title()
+
+        let count = authors.len()
+        let ncols = calc.min(count, 2)
+
+        grid(
+          columns: (1fr,) * ncols,
+          row-gutter: 24pt,
+          ..authors.map(author => [
+            #author.name \
+            #author.affiliation \
+            #link("mailto:" + author.email)
+          ]),
+        )
+
+        if date != none {
+          v(1em)
+          align(center)[#date]
+        }
+      },
+    )
+
+    doc
+  }
 }
 
 #let mytable(body) = {

@@ -46,6 +46,7 @@
     // ),
   ),
   date: [2026 年 6 月 1 日],
+  cover: true, // true なら表紙あり，false なら表紙なし
   doc,
 )
 
