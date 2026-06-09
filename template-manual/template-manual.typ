@@ -118,11 +118,12 @@ Typst では `<xxx>` のように `<` と `>` で囲まれた部分をラベル�
 ```
 としているので，この見出しを参照したいときは
 ```Typst
-第 @ssec:reference 節
+第~@ssec:reference~節
 ```
-とすれば「第 @ssec:reference 節」のように出力できます．
+とすれば「第~@ssec:reference~節」のように出力できます．
 このような相互参照は見出しだけでなく，数式や図表などあらゆる要素に対して行うことができます．
 `<` と `>` の間の文字列は自由に設定できるので，ジャンルごとにわかりやすいラベルをつけるといいでしょう#footnote[例：節の場合は `<sec:xxx>`，小節の場合は `<ssec:xxx>`，小々節の場合は `<sssec:xxx>`，式の場合は `<eq:xxx>`，図の場合は `<fig:xxx>`，表の場合は `<tb:xxx>` など，自分のわかりやすいラベルをつけるといいでしょう．ちなみにここに表示しているような脚注は `#footnote[脚注内の文字列]` で出力します．]．
+また，コード中に挿入している `~`（チルダ）を使用することで，この箇所での改行を防ぐことができます．
 
 == 強制改ページ
 <ssec:pagebreak>
@@ -243,7 +244,7 @@ $ pdv(u_r, t) + (vr(u) dot nabla) u_r = - 1/rho pdv(p, r) + nu (nabla^2 u_r - u_
 ```
 
 のように `$` と数式の間に空白を設けることで出力できます．
-式 @eq:NSr の数式は Typst でサポートされている最も標準的なコマンドと #link("https://typst.app/universe/package/physica/")[`physica`] パッケージで記述しています．
+式~@eq:NSr~の数式は Typst でサポートされている最も標準的なコマンドと #link("https://typst.app/universe/package/physica/")[`physica`] パッケージで記述しています．
 上付き添え字はキャレット `^`，下付き添え字はアンダースコア `_` を用いて表現します．
 したがって，$u_theta^2$ は `u_theta^2` と書きます．
 ここで注意点として，添え字が $u_theta^2$ のように一文字であれば問題ないのですが，$R_(i j)$ のように二文字以上の場合は `R_(i j)` のように括弧 `()` で囲んでください．
@@ -254,7 +255,7 @@ $s i n x$ などと書くことのないよう気をつけましょう．
 ただし，インライン数式の $1 slash rho$ のようにスラッシュで分数表記したいときは `1 slash rho` としてください．
 ベクトルの表記としては矢印を用いて $va(u)$ と表記する方法，イタリックボールド体で $vb(u)$ と表記する方法などがあります．
 これらは `physica` パッケージでサポートされているコマンドを使用し，それぞれ `va(u)`，`vb(u)` とすることで出力できます．
-式 @eq:NSr の左辺第二項では直立ボールド体の $vr(u)$ を採用していますが，これを簡単に出すコマンドは無いため，このテンプレートで自作したコマンドを使用し `vr(u)` とすることで出力できます．
+式~@eq:NSr~の左辺第二項では直立ボールド体の $vr(u)$ を採用していますが，これを簡単に出すコマンドは無いため，このテンプレートで自作したコマンドを使用し `vr(u)` とすることで出力できます．
 他のテンプレートでは `vr(u)` と書いても出力できないので注意してください．
 
 === `physica` パッケージの数式コマンド
@@ -305,7 +306,7 @@ $
 $
 ```
 のように `&` の位置で数式を揃えることができます．
-式 @eq:cosA–@eq:cosC は $=$ の前に `&` を置いているため，$=$ の位置で数式が揃っています．
+式~@eq:cosA–@eq:cosC~は $=$ の前に `&` を置いているため，$=$ の位置で数式が揃っています．
 数式を改行するときは行末にバックスラッシュ `\` を入れます．
 また，このやり方を応用すれば
 $
@@ -323,7 +324,23 @@ $
 のように途中式も入れられます．
 式番号を振らなくていい行は `#<equate:revoke>` コマンドを使用しています．
 
-場合分けのある数式は `cases` が便利です．式 @eq:kronecker-delta は Kronecker のデルタです．
+$
+  epsilon lr((pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z)) |)_(z = 0) & + epsilon^2 lr(\[pdv(tilde(phi.alt)_2, t, 2) + g pdv(tilde(phi.alt)_2, z) + tilde(eta)_1 pdv(, z) (pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z))) #<equate:revoke> \
+  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x)) + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
+$
+```Typst
+$
+  epsilon lr((pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z)) |)_(z = 0) & + epsilon^2 lr(\[pdv(tilde(phi.alt)_2, t, 2) + g pdv(tilde(phi.alt)_2, z) + tilde(eta)_1 pdv(, z) (pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z))) #<equate:revoke> \
+  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x)) + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
+$
+```
+
+式~@eq:wave~は式の途中で改行を挟む場合の処理方法を示しています．
+注目すべき箇所は大括弧 $[ quad ]$ の途中で改行を挟んでいる点，代入記法として $|_(z = 0)$ を使用している点の二箇所です．
+このような場合には #link("https://typst.app/docs/reference/math/lr/")[`lr` コマンド] と `\` によるエスケープでうまいこと表現します．
+また，`phi` は $phi$ と出力されますが，`phi.alt` とすることで $phi.alt$ と出力されるようになります．
+
+場合分けのある数式は `cases` が便利です．式~@eq:kronecker-delta~は Kronecker のデルタです．
 $
   delta_(i j) = cases(
     1"," quad i = j,
@@ -399,10 +416,10 @@ $
   caption: [Please write the figure caption here.],
 )<fig:one_figure>
 
-図 @fig:one_figure のように図を……
+図~@fig:one_figure~のように図を……
 ```
 
-図 @fig:one_figure のように図を配置するときは `#figure()` コマンドで図を自動配置し，`#image()` コマンドで画像を挿入します．
+図~@fig:one_figure~のように図を配置するときは `#figure()` コマンドで図を自動配置し，`#image()` コマンドで画像を挿入します．
 図を配置する位置は次のように `placement` オプションで指定します．
 
 - `top`：ページの上部に配置
@@ -428,8 +445,8 @@ $
 `grid` コマンドでは列数や列間のスペースを指定できます．
 `columns: 2` とすれば 2 列のグリッドを作ることができます．
 また，`gutter: 2.5mm` とすれば列間のスペースを $#qty[2.5][mm]$ に設定できます．
-図 @fig:two_figures は関連する図を左右に二枚配置した例です．
-図 @fig:three_figures は関連する図を左右に三枚配置した例で，図 @fig:four_figures は関連する図を $2 times 2$ のグリッドで配置した例です．
+図~@fig:two_figures~は関連する図を左右に二枚配置した例です．
+図~@fig:three_figures~は関連する図を左右に三枚配置した例で，図~@fig:four_figures~は関連する図を $2 times 2$ のグリッドで配置した例です．
 
 #figure(
   placement: top,
@@ -548,10 +565,10 @@ $
 ]
 #h(1em)
 また，`subfigure` を使うことでそれぞれのサブ図にラベルをつけることができます．
-参照時には `@fig:four_figures` と入力すると @fig:four_figures のように全体の図を参照できますし，`@subfig:four_figures-a` と入力すると @subfig:four_figures-a のようにサブ図を参照できます．
-図 @fig:four_figures(@subfig:four_figures-a) のように全体の図とサブ図を両方参照したいときは `@fig:four_figures(@subfig:four_figures-a)` と入力すれば出力できます．
+参照時には `@fig:four_figures` と入力すると~@fig:four_figures~のように全体の図を参照できますし，`@subfig:four_figures-a` と入力すると~@subfig:four_figures-a~のようにサブ図を参照できます．
+図~@fig:four_figures(@subfig:four_figures-a)~のように全体の図とサブ図を両方参照したいときは `@fig:four_figures(@subfig:four_figures-a)` と入力すれば出力できます．
 このとき，`@subfig:four_figures-a` 前後の括弧 `()` を忘れないでください．
-括弧をデフォルトで出力するような設定もできますが，図 @fig:four_figures(@subfig:four_figures-a, @subfig:four_figures-b) のように複数のサブ図を参照したいときもあるので，このテンプレートでは括弧は手動で入力する方式にしています．
+括弧をデフォルトで出力するような設定もできますが，図~@fig:four_figures(@subfig:four_figures-a, @subfig:four_figures-b)~のように複数のサブ図を参照したいときもあるので，このテンプレートでは括弧は手動で入力する方式にしています．
 
 == 表の配置
 <ssec:table>
@@ -560,7 +577,7 @@ $
 正直，Typst での表作成は少々面倒です．
 特に表のセルの数が多くなると行をいくつも増やさなければいけないのでかなり労力がかかります．
 表作成時は `table` コマンドを使用しますが，図の場合と挙動が似ているので `#figure()` 環境内で `table` コマンドを使用して表を配置します．
-表 @tb:example_table は表の作成例です．
+表~@tb:example_table~は表の作成例です．
 ヘッダー（学会名・会員種別・年会費）は中央揃え，それ以外の内容は左列から順に左揃え・中央揃え・右揃えにしています．
 揃え位置の指定は `align` オプションで行います．
 
@@ -644,8 +661,8 @@ $
 ) <tb:example_table>
 ```
 #h(1em)
-また，レポートや論文向きではないかもしれませんが，表 @tb:example_mytable のように行ごとに交互に色を変えることもできます．
-表 @tb:example_mytable の場合は `mytable` という名前の表デザインを新たに定義して使用しています．
+また，レポートや論文向きではないかもしれませんが，表~@tb:example_mytable~ のように行ごとに交互に色を変えることもできます．
+表~@tb:example_mytable~ の場合は `mytable` という名前の表デザインを新たに定義して使用しています．
 
 #figure(
   placement: top,
