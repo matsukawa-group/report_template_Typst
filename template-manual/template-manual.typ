@@ -49,6 +49,14 @@
   doc,
 )
 
+// 目次が不要な場合は以下の行をコメントアウトしてください．
+#outline(
+  title: "目次",
+  indent: auto,
+)
+
+#pagebreak()
+
 = これは見出し
 <sec:heading>
 
