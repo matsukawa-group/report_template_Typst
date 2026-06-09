@@ -46,7 +46,14 @@
     // ),
   ),
   date: [2026 年 6 月 1 日],
+  cover: true, // true なら表紙あり，false なら表紙なし
   doc,
+)
+
+// 目次が不要な場合は以下の行をコメントアウトしてください．
+#outline(
+  title: "目次",
+  indent: auto,
 )
 
 = これは見出し
