@@ -137,19 +137,15 @@
       let loc = el.location()
 
       if el.kind == image {
-        link(loc)[
-          #numbering(
-            el.numbering,
-            ..counter(figure.where(kind: image)).at(loc),
-          )
-        ]
+        link(loc)[#numbering(
+          el.numbering,
+          ..counter(figure.where(kind: image)).at(loc),
+        )]
       } else if el.kind == table {
-        link(loc)[
-          #numbering(
-            el.numbering,
-            ..counter(figure.where(kind: table)).at(loc),
-          )
-        ]
+        link(loc)[#numbering(
+          el.numbering,
+          ..counter(figure.where(kind: table)).at(loc),
+        )]
       } else {
         it
       }
