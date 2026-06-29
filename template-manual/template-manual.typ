@@ -534,7 +534,7 @@ $
       label: <subfig:four_figures-c>,
     ),
     subfigure(
-      image("figure/example-image.pdf", width: 100%),
+      image("figure/example-image-d.pdf", width: 100%),
       caption: [Lower-right figure caption.],
       label: <subfig:four_figures-d>,
     ),
