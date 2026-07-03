@@ -322,8 +322,9 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
-  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("pages", (none, ", ", page-set-without-p, ", ", "", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
@@ -334,9 +335,10 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
-  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
-  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
+  ("pages", (none, ", ", page-set-without-p, ", ", "", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-book-en = (
@@ -346,6 +348,7 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -357,6 +360,7 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -366,6 +370,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -375,6 +380,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -385,6 +391,7 @@
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -395,6 +402,7 @@
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -406,6 +414,7 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -417,6 +426,7 @@
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -427,6 +437,7 @@
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -437,6 +448,7 @@
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -447,6 +459,7 @@
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -457,6 +470,7 @@
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -465,6 +479,7 @@
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, "\"", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -473,6 +488,7 @@
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),  
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -482,6 +498,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("school", (none, "_Master's Thesis_, ", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -491,6 +508,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("school", (none, "", all-return, "修士論文", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -500,6 +518,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
@@ -510,6 +529,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
@@ -520,6 +540,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
   ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
@@ -530,6 +551,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
   ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
@@ -541,6 +563,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("school", (none, "_Ph.D. Dissertation_, ", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -550,6 +573,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("school", (none, "", all-return, "博士論文", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -559,6 +583,7 @@
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("publisher", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -568,6 +593,7 @@
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("publisher", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -578,6 +604,7 @@
   ("institution", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
   ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -588,6 +615,7 @@
   ("institution", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
   ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -596,6 +624,7 @@
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, "\"", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
@@ -604,6 +633,7 @@
   ("author", (none, "", author-set3, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
