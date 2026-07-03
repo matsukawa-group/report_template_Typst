@@ -365,7 +365,7 @@
 #let url-link-if-no-doi(biblist, name) = {
   if biblist.at("doi", default: ()).len() == 0 {
     let url = biblist.at(name).sum()
-    [available from: <#link(url)[#raw(url)]>]
+    [URL: <#link(url)[#raw(url)]>]
   } else {
     []
   }
@@ -377,220 +377,242 @@
 }
 
 #let bibtex-article-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("journal", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
-  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
+  ("pages", (none, ", ", page-set-without-p, ", ", "", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-article-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("journal", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","journal", "volume", "number"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
-  ("pages", (none, ", ", page-set-without-p, "", "", (), ".")),
-  ("doi", (none, ", DOI: ", doi-link, "", "", (), ".")),
-  ("url", (none, ", ", url-link-if-no-doi, "", ", ", (), ".")),
+  ("pages", (none, ", ", page-set-without-p, ", ", "", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
+  ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
+  ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-book-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("publisher", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-book-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("publisher", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("number", (none, "(", all-return, ")", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-booklet-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-booklet-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-conference-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-conference-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, ", ", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-inbook-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("publisher", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-inbook-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("publisher", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","publisher"), "%year-doubling).")),
   ("volume", (none, "", all-bold, "", "", (), ".")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-incollection-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-incollection-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-inproceedings-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("booktitle", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-inproceedings-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("booktitle", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","booktitle"), "%year-doubling).")),
   ("pages", (none, "", page-set-without-p, "", ", ", (), ".")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-manual-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, "\"", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-manual-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),  
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-mastersthesis-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("school", (none, "_Master's Thesis_, ", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-mastersthesis-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("school", (none, "", all-return, "修士論文", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-misc-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-misc-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("eprint", (none, "", arxiv-link, "", ", ", (), ".")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-online-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("howpublished", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
   ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
 )
 
 #let bibtex-online-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("howpublished", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","howpublished"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
   ("access", (none, "(accessed on: ", all-return, ")", ", ", (), ").")),
@@ -598,73 +620,81 @@
 
 
 #let bibtex-phdthesis-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("school", (none, "_Ph.D. Dissertation_, ", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-phdthesis-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("school", (none, "", all-return, "博士論文", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","school"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-proceedings-en = (
-  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("editor", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("publisher", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-proceedings-ja = (
-  ("editor", (none, "", author-set3, "", ", ", (), ".")),
+  ("editor", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("publisher", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("editor","title","publisher"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-techreport-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, ",\"", " ", (), ".")),
   ("institution", (none, "", all-emph, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
   ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-techreport-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」, ", " ", (), ".")),
   ("institution", (none, "", all-return, "", ", ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title","institution"), "%year-doubling).")),
   ("number", (none, "(", all-return, "), ", "", (), ").")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-unpublished-en = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "\"", title-en, "\"", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
 
 #let bibtex-unpublished-ja = (
-  ("author", (none, "", author-set3, "", ", ", (), ".")),
+  ("author", (none, "", author-set, "", ", ", (), ".")),
   ("title", (none, "「", all-return, "」", " ", (), ".")),
   ("year", (" ","(",all-return, "%year-doubling)", ", ", ("author","title"), "%year-doubling).")),
+  ("note", (none, " (", all-return, "), ", "", (), ").")),
   ("doi", (none, "DOI: ", doi-link, "", "", (), ".")),
   ("url", (none, "", url-link-if-no-doi, "", ", ", (), ".")),
 )
