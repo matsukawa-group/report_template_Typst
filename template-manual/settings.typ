@@ -48,9 +48,8 @@
         #grid(
           columns: (auto, auto),
           column-gutter: gutter,
-          align: (left, top),
-          label,
-          align(left)[#it.body],
+          align(top + left)[#label],
+          align(top + left)[#it.body],
         )
       ]
     } else {
@@ -58,9 +57,8 @@
       grid(
         columns: (auto, 1fr),
         column-gutter: gutter,
-        align: (left, top),
-        label,
-        align(left)[#it.body],
+        align(top + left)[#label],
+        align(top + left)[#it.body],
       )
     }
   })
