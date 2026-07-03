@@ -11,17 +11,6 @@
 #show: setup
 #show: bib-init
 
-// 複数の図を並べるための設定
-#import "@preview/hallon:0.1.3" as hallon: subfigure
-#import "@preview/smartaref:0.1.0": Cref, cref
-#show: hallon.style-figures
-#show figure.where(kind: image): set figure(supplement: "Figure")
-#show figure.where(kind: image): set figure.caption(separator: h(1em))
-#show figure.where(kind: "subfigure"): set figure(supplement: none, numbering: "a")
-#show figure.where(kind: table): set figure.caption(position: top)
-#show figure.where(kind: table): set figure.caption(separator: h(1em))
-
-
 // 定理環境の設定
 // #import cosmos.simple: *
 // #import cosmos.fancy: *
@@ -534,7 +523,7 @@ $
       label: <subfig:four_figures-c>,
     ),
     subfigure(
-      image("figure/example-image.pdf", width: 100%),
+      image("figure/example-image-d.pdf", width: 100%),
       caption: [Lower-right figure caption.],
       label: <subfig:four_figures-d>,
     ),
