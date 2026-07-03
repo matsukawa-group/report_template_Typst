@@ -304,7 +304,7 @@
 #let url-link-if-no-doi(biblist, name) = {
   if biblist.at("doi", default: ()).len() == 0 {
     let url = biblist.at(name).sum()
-    [available from: <#link(url)[#raw(url)]>]
+    [URL: <#link(url)[#raw(url)]>]
   } else {
     []
   }
