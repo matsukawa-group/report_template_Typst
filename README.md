@@ -79,6 +79,7 @@ git push origin HEAD
 
 レポート執筆のほか，Typst の使用方法に関して参考になる文献を紹介します．
 また，このリポジトリの `template-manual/` のディレクトリには Typst の使い方に関して簡単な説明があります．
+テンプレートマニュアルを含め，説明事項の一部は以下の文献と重複する箇所があります． ご了承ください．
 
 - [Typst ドキュメント 日本語版](https://typst-jp.github.io/docs/)
 - [Typstの使い方](https://kumaroot.readthedocs.io/ja/latest/typst/typst-usage.html)
