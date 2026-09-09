@@ -28,6 +28,32 @@ brew install typst
 typst update
 ```
 
+### Visual Studio Code を使用する場合
+
+エディタとして Visual Studio Code を使用すると編集が楽です．
+拡張機能として [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) を入れておくと，`Ctrl` + `K` `V` でリアルタイムのプレビューを見ることができます．
+
+## リポジトリの構成
+
+```
+report_template_Typst/
+├── .gitignore                    # Git の追跡対象から除外するファイルを指定
+├── LICENSE                       # 本テンプレートのライセンス
+├── README.md                     # リポジトリの概要および使用方法
+├── bibliography.bib              # 参考文献の BibTeX データベース
+├── main.typ                      # レポートのメイン Typst ファイル
+├── settings.typ                  # 文書全体の書式および各種設定
+│
+├── figure/                       # レポートで使用する図
+│
+└── template-manual/              # テンプレートの使用方法を示したマニュアル
+    ├── figure/                   # マニュアルで使用する図
+    ├── bibliography.bib          # マニュアル用の参考文献データベース
+    ├── settings.typ              # マニュアル用設定ファイル
+    ├── template-manual.typ       # マニュアルのメイン Typst ファイル
+    └── template-manual.pdf       # コンパイル済みマニュアル
+```
+
 ## このレポートテンプレートの使用方法
 
 ### レポートリポジトリの作成
@@ -79,6 +105,7 @@ git push origin HEAD
 
 レポート執筆のほか，Typst の使用方法に関して参考になる文献を紹介します．
 また，このリポジトリの `template-manual/` のディレクトリには Typst の使い方に関して簡単な説明があります．
+テンプレートマニュアルを含め，説明事項の一部は以下の文献と重複する箇所があります． ご了承ください．
 
 - [Typst ドキュメント 日本語版](https://typst-jp.github.io/docs/)
 - [Typstの使い方](https://kumaroot.readthedocs.io/ja/latest/typst/typst-usage.html)
