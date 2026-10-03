@@ -17,6 +17,8 @@
 #import cosmos.rainbow: *
 // #import cosmos.clouds: *
 #show: show-theorion
+// 定理などの番号を節ごとに振る（例：Theorem 4.1）
+#set-inherited-levels(1)
 
 #set document(title: [
   ここに文書のタイトルを入れます
@@ -26,12 +28,12 @@
     (
       name: "著者名",
       affiliation: "著者の所属・学年",
-      email: "著者のメールアドレス",
+      email: "author@example.com",
     ),
     // (
     //   name: "第二著者",
     //   affiliation: "第二著者の所属・学年",
-    //   email: "第二著者のメールアドレス",
+    //   email: "second@example.com",
     // ),
   ),
   date: [2026 年 6 月 1 日],
@@ -701,6 +703,8 @@ $
 #import cosmos.rainbow: *
 // #import cosmos.clouds: *
 #show: show-theorion
+// 定理などの番号を節ごとに振る（例：Theorem 4.1）
+#set-inherited-levels(1)
 ```
 のように，ここでは `cosmos.rainbow` を適用していますが，自分の好みの定理環境を選んで使用してください．
 
