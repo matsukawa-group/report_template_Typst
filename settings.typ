@@ -5,6 +5,21 @@
 ////
 //////////////////////////////////////////////////////////////////
 
+// =================================================================
+// フォントの設定
+// =================================================================
+// OS によらず同じ見た目になるよう，リポジトリの fonts/ に同梱したフォントを使う（README 参照）．
+// New Computer Modern は Typst に内蔵されている．
+// 本文（欧文：New Computer Modern，和文：BIZ UD明朝）
+#let serif-font = ("New Computer Modern", "BIZ UDMincho")
+// タイトル・見出し等（欧文・和文とも BIZ UDPゴシック）
+#let sans-font = ("BIZ UDPGothic",)
+// 本文中の太字（欧文：New Computer Modern，和文：BIZ UDゴシック）
+#let strong-font = ("New Computer Modern", "BIZ UDGothic")
+// コード（欧文：DejaVu Sans Mono，和文：BIZ UDゴシック）
+#let mono-font = ("DejaVu Sans Mono", "BIZ UDGothic")
+// =================================================================
+
 // 日本語のダミーテキスト
 #import "@preview/roremu:0.1.0": roremu
 // 数式を簡単に書くための設定
@@ -18,14 +33,12 @@
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
 #import "@preview/codly:1.3.0": *
-#import "@preview/codly-languages:0.1.1": *
 
 // 単位に関する設定
 #import "@preview/fancy-units:0.1.1": *
 
 // 複数の図を並べるための設定
 #import "@preview/hallon:0.1.3" as hallon: subfigure
-#import "@preview/smartaref:0.1.0": Cref, cref
 // 図のキャプションの設定
 #let my-figure-caption(it) = context {
   let gutter = 1em
@@ -78,7 +91,7 @@
   show: cjk-spacer
 
   // 本文のフォント
-  set text(lang: "en", font: ("New Computer Modern", "BIZ UDMincho"))
+  set text(lang: "en", font: serif-font)
 
   set par(
     justify: true, // 両端揃え
@@ -99,7 +112,7 @@
   )
 
   // タイトル
-  show title: set text(font: "Segoe UI")
+  show title: set text(font: sans-font)
   show title: set align(center)
 
   // 見出し番号
@@ -110,7 +123,7 @@
 
   // 見出し
   show heading: it => {
-    set text(font: "Segoe UI")
+    set text(font: sans-font)
     it
     par(text(size: 0pt, "")) // 見出しの後に字下げするために空の段落を設定
     v(-1em)
@@ -155,13 +168,15 @@
   // 強調
   show strong: set text(
     weight: "bold",
-    font: ("New Computer Modern", "BIZ UDGothic"),
+    font: strong-font,
   )
 
   // 引用文
   set quote(block: true)
   show quote: set pad(x: 5em)
 
+  // コードブロック（DejaVu Sans Mono には和文がないので和文フォントを補う）
+  show raw: set text(font: mono-font)
   show: codly-init.with()
 
   // 単位に関する設定
@@ -190,30 +205,8 @@
 
   // 図とキャプションの間のスペースを設定
   set figure(gap: 1em)
-  // 参照時に図・表は番号だけ表示
-  show ref: it => {
-    let el = it.element
-
-    if el != none and el.func() == figure {
-      let loc = el.location()
-
-      if el.kind == image {
-        link(loc)[#numbering(
-          el.numbering,
-          ..counter(figure.where(kind: image)).at(loc),
-        )]
-      } else if el.kind == table {
-        link(loc)[#numbering(
-          el.numbering,
-          ..counter(figure.where(kind: table)).at(loc),
-        )]
-      } else {
-        it
-      }
-    } else {
-      it
-    }
-  }
+  // 参照時は「Figure」等をつけずに番号だけを表示する（図・表・コード・定理など）
+  set ref(supplement: none)
 
   doc
 }
@@ -744,7 +737,7 @@
   let title-arg = if title == none {
     (:)
   } else {
-    (title: text(font: "Segoe UI")[#title])
+    (title: text(font: sans-font)[#title])
   }
 
   original-showybox(
