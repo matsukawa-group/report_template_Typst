@@ -85,6 +85,35 @@
   ]
 }
 
+// 柱（ページ上部に節の番号と見出しを表示）
+// そのページで始まる節があればその節を，なければ直前の節を表示する．
+// 表紙・タイトル・目次のあるページには表示しない．
+#let running-head = context {
+  let page-no = here().page()
+  let on-this-page(el) = el.location().page() == page-no
+  if query(title).any(on-this-page) or query(outline).any(on-this-page) {
+    return
+  }
+  let headings = query(heading.where(level: 1, outlined: true))
+  let current = headings.filter(on-this-page)
+  let previous = headings.filter(el => el.location().page() < page-no)
+  let sec = if current.len() > 0 {
+    current.first()
+  } else if previous.len() > 0 {
+    previous.last()
+  } else {
+    return
+  }
+  set text(font: sans-font, weight: "bold")
+  block(width: 100%, inset: (bottom: 3pt), stroke: (bottom: 0.4pt))[
+    #if sec.numbering != none {
+      numbering(sec.numbering, ..counter(heading).at(sec.location()))
+      h(1em)
+    }
+    #sec.body
+  ]
+}
+
 #let setup(doc) = {
   // CJK 文字を組むときのスペース
   import "@preview/cjk-spacer:0.2.1": cjk-spacer
@@ -95,8 +124,8 @@
 
   set par(
     justify: true, // 両端揃え
-    leading: 0.65em, // 行送り
-    spacing: 0.65em, // 段落間の間隔
+    leading: 0.8em, // 行送り
+    spacing: 0.8em, // 段落間の間隔（行送りと同じにして段落間に余分な空きを入れない）
     first-line-indent: (amount: 1em, all: false),
   )
 
@@ -106,6 +135,9 @@
   // のようには設定しない．
   set page(numbering: "1")
   set page(
+    paper: "a4",
+    margin: (x: 20mm, y: 25mm), // 余白（上下 25 mm，左右 20 mm）
+    header: running-head,
     footer: context align(center)[
       --- #counter(page).display() ---
     ],
@@ -117,14 +149,20 @@
 
   // 見出し番号
   set heading(
-    numbering: "1.",
+    numbering: "1.1",
     supplement: none,
   )
 
-  // 見出し
+  // 見出し（番号と見出しの間は 1 文字分空ける）
   show heading: it => {
     set text(font: sans-font)
-    it
+    block({
+      if it.numbering != none {
+        counter(heading).display(it.numbering)
+        h(1em)
+      }
+      it.body
+    })
     par(text(size: 0pt, "")) // 見出しの後に字下げするために空の段落を設定
     v(-1em)
   }
@@ -164,6 +202,16 @@
   show link: set text(fill: blue)
   show ref: set text(fill: blue)
   show footnote: set text(fill: blue)
+
+  // 脚注（本文中・脚注とも「1)」の形式．脚注側の番号は上付きにしない）
+  set footnote(numbering: "1)")
+  show footnote.entry: it => {
+    let loc = it.note.location()
+    h(it.indent)
+    link(loc, numbering(it.note.numbering, ..counter(footnote).at(loc)))
+    h(0.5em)
+    it.note.body
+  }
 
   // 強調
   show strong: set text(
@@ -244,8 +292,8 @@
           columns: (1fr,) * ncols,
           row-gutter: 24pt,
           column-gutter: 36pt,
-          ..authors.map(author => [
-            #text(14pt, weight: "bold")[#author.name] \
+          ..authors.map(author => text(14pt)[
+            #author.name \
             #v(0.5em)
             #author.affiliation \
             #v(0.5em)
@@ -279,7 +327,7 @@
         grid(
           columns: (1fr,) * ncols,
           row-gutter: 24pt,
-          ..authors.map(author => [
+          ..authors.map(author => text(14pt)[
             #author.name \
             #author.affiliation \
             #link("mailto:" + author.email)
