@@ -17,6 +17,8 @@
 #import cosmos.rainbow: *
 // #import cosmos.clouds: *
 #show: show-theorion
+// 定理などの番号を節ごとに振る（例：Theorem 4.1）
+#set-inherited-levels(1)
 
 #set document(title: [
   ここに文書のタイトルを入れます
@@ -26,12 +28,12 @@
     (
       name: "著者名",
       affiliation: "著者の所属・学年",
-      email: "著者のメールアドレス",
+      email: "author@example.com",
     ),
     // (
     //   name: "第二著者",
     //   affiliation: "第二著者の所属・学年",
-    //   email: "第二著者のメールアドレス",
+    //   email: "second@example.com",
     // ),
   ),
   date: [2026 年 6 月 1 日],
@@ -315,12 +317,12 @@ $
 
 $
   epsilon lr((pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z)) |)_(z = 0) & + epsilon^2 lr(\[pdv(tilde(phi.alt)_2, t, 2) + g pdv(tilde(phi.alt)_2, z) + tilde(eta)_1 pdv(, z) (pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z))) #<equate:revoke> \
-  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x)) + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
+  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x))^2 + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
 $
 ```Typst
 $
   epsilon lr((pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z)) |)_(z = 0) & + epsilon^2 lr(\[pdv(tilde(phi.alt)_2, t, 2) + g pdv(tilde(phi.alt)_2, z) + tilde(eta)_1 pdv(, z) (pdv(tilde(phi.alt)_1, t, 2) + g pdv(tilde(phi.alt)_1, z))) #<equate:revoke> \
-  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x)) + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
+  & + pdv(, t) lr(lr({(pdv(tilde(phi.alt)_1, x))^2 + (pdv(tilde(phi.alt)_1, z))^2}])|)_(z = 0) = 0 #<eq:wave>
 $
 ```
 
@@ -701,6 +703,8 @@ $
 #import cosmos.rainbow: *
 // #import cosmos.clouds: *
 #show: show-theorion
+// 定理などの番号を節ごとに振る（例：Theorem 4.1）
+#set-inherited-levels(1)
 ```
 のように，ここでは `cosmos.rainbow` を適用していますが，自分の好みの定理環境を選んで使用してください．
 

@@ -5,6 +5,21 @@
 ////
 //////////////////////////////////////////////////////////////////
 
+// =================================================================
+// フォントの設定
+// =================================================================
+// OS によらず同じ見た目になるよう，リポジトリの fonts/ に同梱したフォントを使う（README 参照）．
+// New Computer Modern は Typst に内蔵されている．
+// 本文（欧文：New Computer Modern，和文：BIZ UD明朝）
+#let serif-font = ("New Computer Modern", "BIZ UDMincho")
+// タイトル・見出し等（欧文・和文とも BIZ UDPゴシック）
+#let sans-font = ("BIZ UDPGothic",)
+// 本文中の太字（欧文：New Computer Modern，和文：BIZ UDゴシック）
+#let strong-font = ("New Computer Modern", "BIZ UDGothic")
+// コード（欧文：DejaVu Sans Mono，和文：BIZ UDゴシック）
+#let mono-font = ("DejaVu Sans Mono", "BIZ UDGothic")
+// =================================================================
+
 // 日本語のダミーテキスト
 #import "@preview/roremu:0.1.0": roremu
 // 数式を簡単に書くための設定
@@ -18,14 +33,12 @@
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
 #import "@preview/codly:1.3.0": *
-#import "@preview/codly-languages:0.1.1": *
 
 // 単位に関する設定
 #import "@preview/fancy-units:0.1.1": *
 
 // 複数の図を並べるための設定
 #import "@preview/hallon:0.1.3" as hallon: subfigure
-#import "@preview/smartaref:0.1.0": Cref, cref
 // 図のキャプションの設定
 #let my-figure-caption(it) = context {
   let gutter = 1em
@@ -72,18 +85,47 @@
   ]
 }
 
+// 柱（ページ上部に節の番号と見出しを表示）
+// そのページで始まる節があればその節を，なければ直前の節を表示する．
+// 表紙・タイトル・目次のあるページには表示しない．
+#let running-head = context {
+  let page-no = here().page()
+  let on-this-page(el) = el.location().page() == page-no
+  if query(title).any(on-this-page) or query(outline).any(on-this-page) {
+    return
+  }
+  let headings = query(heading.where(level: 1, outlined: true))
+  let current = headings.filter(on-this-page)
+  let previous = headings.filter(el => el.location().page() < page-no)
+  let sec = if current.len() > 0 {
+    current.first()
+  } else if previous.len() > 0 {
+    previous.last()
+  } else {
+    return
+  }
+  set text(font: sans-font, weight: "bold")
+  block(width: 100%, inset: (bottom: 3pt), stroke: (bottom: 0.4pt))[
+    #if sec.numbering != none {
+      numbering(sec.numbering, ..counter(heading).at(sec.location()))
+      h(1em)
+    }
+    #sec.body
+  ]
+}
+
 #let setup(doc) = {
   // CJK 文字を組むときのスペース
   import "@preview/cjk-spacer:0.2.1": cjk-spacer
   show: cjk-spacer
 
   // 本文のフォント
-  set text(lang: "en", font: ("New Computer Modern", "BIZ UDMincho"))
+  set text(lang: "en", font: serif-font)
 
   set par(
     justify: true, // 両端揃え
-    leading: 0.65em, // 行送り
-    spacing: 0.65em, // 段落間の間隔
+    leading: 0.8em, // 行送り
+    spacing: 0.8em, // 段落間の間隔（行送りと同じにして段落間に余分な空きを入れない）
     first-line-indent: (amount: 1em, all: false),
   )
 
@@ -93,25 +135,34 @@
   // のようには設定しない．
   set page(numbering: "1")
   set page(
+    paper: "a4",
+    margin: (x: 20mm, y: 25mm), // 余白（上下 25 mm，左右 20 mm）
+    header: running-head,
     footer: context align(center)[
       --- #counter(page).display() ---
     ],
   )
 
   // タイトル
-  show title: set text(font: "Segoe UI")
+  show title: set text(font: sans-font)
   show title: set align(center)
 
   // 見出し番号
   set heading(
-    numbering: "1.",
+    numbering: "1.1",
     supplement: none,
   )
 
-  // 見出し
+  // 見出し（番号と見出しの間は 1 文字分空ける）
   show heading: it => {
-    set text(font: "Segoe UI")
-    it
+    set text(font: sans-font)
+    block({
+      if it.numbering != none {
+        counter(heading).display(it.numbering)
+        h(1em)
+      }
+      it.body
+    })
     par(text(size: 0pt, "")) // 見出しの後に字下げするために空の段落を設定
     v(-1em)
   }
@@ -152,16 +203,28 @@
   show ref: set text(fill: blue)
   show footnote: set text(fill: blue)
 
+  // 脚注（本文中・脚注とも「1)」の形式．脚注側の番号は上付きにしない）
+  set footnote(numbering: "1)")
+  show footnote.entry: it => {
+    let loc = it.note.location()
+    h(it.indent)
+    link(loc, numbering(it.note.numbering, ..counter(footnote).at(loc)))
+    h(0.5em)
+    it.note.body
+  }
+
   // 強調
   show strong: set text(
     weight: "bold",
-    font: ("New Computer Modern", "BIZ UDGothic"),
+    font: strong-font,
   )
 
   // 引用文
   set quote(block: true)
   show quote: set pad(x: 5em)
 
+  // コードブロック（DejaVu Sans Mono には和文がないので和文フォントを補う）
+  show raw: set text(font: mono-font)
   show: codly-init.with()
 
   // 単位に関する設定
@@ -190,30 +253,8 @@
 
   // 図とキャプションの間のスペースを設定
   set figure(gap: 1em)
-  // 参照時に図・表は番号だけ表示
-  show ref: it => {
-    let el = it.element
-
-    if el != none and el.func() == figure {
-      let loc = el.location()
-
-      if el.kind == image {
-        link(loc)[#numbering(
-          el.numbering,
-          ..counter(figure.where(kind: image)).at(loc),
-        )]
-      } else if el.kind == table {
-        link(loc)[#numbering(
-          el.numbering,
-          ..counter(figure.where(kind: table)).at(loc),
-        )]
-      } else {
-        it
-      }
-    } else {
-      it
-    }
-  }
+  // 参照時は「Figure」等をつけずに番号だけを表示する（図・表・コード・定理など）
+  set ref(supplement: none)
 
   doc
 }
@@ -251,8 +292,8 @@
           columns: (1fr,) * ncols,
           row-gutter: 24pt,
           column-gutter: 36pt,
-          ..authors.map(author => [
-            #text(14pt, weight: "bold")[#author.name] \
+          ..authors.map(author => text(14pt)[
+            #author.name \
             #v(0.5em)
             #author.affiliation \
             #v(0.5em)
@@ -286,7 +327,7 @@
         grid(
           columns: (1fr,) * ncols,
           row-gutter: 24pt,
-          ..authors.map(author => [
+          ..authors.map(author => text(14pt)[
             #author.name \
             #author.affiliation \
             #link("mailto:" + author.email)
@@ -744,7 +785,7 @@
   let title-arg = if title == none {
     (:)
   } else {
-    (title: text(font: "Segoe UI")[#title])
+    (title: text(font: sans-font)[#title])
   }
 
   original-showybox(
